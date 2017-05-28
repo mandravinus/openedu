@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="" name="description">
+<meta content="" name="author">
+<title>EduLabs</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link href="/img/favicon.ico" rel="icon">
+</head>
+<body class="">
+
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button class="navbar-toggle collapsed" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<i class="fa fa-navicon"></i>
+</button>
+<a class="navbar-brand" href="/">EduLabs</a>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="hidden" role="presentation">
+<a title="Αρχική" href="/">
+<span class="">Αρχική</span>
+</a>
+</li>
+<li class="" role="presentation">
+<a title="Ανοικτά δεδομένα" href="/open-data">
+<span class="">Ανοικτά δεδομένα</span>
+</a>
+</li>
+<li class="" role="presentation">
+<a title="Σχετικά με τη δράση" href="/about">
+<span class="">Σχετικά με τη δράση</span>
+</a>
+
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<div id="content">
+<style>
+
+        input[type=text] {
+            width: 100%;
+        }
+
+</style>
+<div id="app-form">
+<h1> </h1>
+<form class="form-horizontal" data-messages="[]" data-is-valid="1" action="" method="post">
+<div class="form-group">
+<h1>Αίτηση εκδήλωσης ενδιαφέροντος</h1>
+<p>
+Στην δράση των edulabs μπορεί να συμμετέχει ακαδημαϊκό και ερευνητικό προσωπικό από όλα τα Πανεπιστήμια και Ερευνητικά Κέντρα με εμπειρία σε STEAM που θέλει να συνεργαστεί με τα σχολεία στην αξιοποίηση των 140
+<a href="http://edulabs.minedu.gov.gr/">edulabs </a>
+που εγκαθίστανται σε σχολεία σε όλες τις εκπαιδευτικές διευθύνσεις.
+<br>
+Παρακαλώ συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας.
+</p>
+
+
+</div>
+<div class="table-responsive">
+<fieldset>
+
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-onoma">Ονομα</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<input id="el-onoma" class="form-control input-sm" type="text" value="" name="erga" placeholder="Ονομα">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-eponimo">Επώνυμο</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<input id="el-epitheto" class="form-control input-sm" type="text" value="" name="person" placeholder="Επώνυμο">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-email">Email</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<input id="el-email" class="form-control input-sm" type="text" value="" name="email" placeholder="Email">
+</div>
+</div>
+
+
+
+
+<div id="items-list">
+<div class="form-group">
+<label class="control-label col-md-3" for="newselect">Επιλέξτε την ιδιότητά σας</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<select id="newselect" class="form-control" name="newselect">
+<option id="space" selected="" value="space"></option>
+<option id="idrimata" value="idrimata">Διδακτικό Ερευνητικό Προσωπικό</option>
+<option id="ereunitika" value="ereunitika">Εργαστηριακό Προσωπικό -Βοηθοί και Επιστημονικοί Συνεργάτες</option>
+<option id="ereunitika" value="ereunitika">Διοικητικό Προσωπικ</option>
+<option id="ereunitika" value="ereunitika">Φοιτητής/τρια</option>
+<option id="ereunitika" value="ereunitika">Μεταπτυχιακός φοιτητής</option>
+</select>
+</div>
+</div>
+
+<div id="first" style="display: block;">
+<div class="form-group ">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-idrima">Ίδρυμα</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<select id="el-idrima" class="form-control input-sm" data-placeholder="Ίδρυμα" name="idrima">
+<option selected="" disabled="" value="">Ίδρυμα</option>
+</select>
+</div>
+</div>
+<div class="form-group ">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-sxolh">Σχολή</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<select id="el-sxolh" class="form-control input-sm" data-placeholder="Σχολή" name="sxolh">
+<option selected="" disabled="" value="">Σχολή</option>
+<option value="1"></option>
+</select>
+</div>
+</div>
+<div id="eltmhmalession" class="form-group">
+</div>
+
+<div id="second" style="display: none;">
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-ereunitiko" disabled="disabled">Ερευνητικό Κέντρο</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<select id="el-ereunitiko" class="form-control input-sm" data-placeholder="Ερευνητικό Κέντρο" name="ereunitiko" disabled="disabled">
+<option selected="" disabled="" value="">Ερευνητικό Κέντρο</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-institute" disabled="disabled">Ινστιτούτο</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<select id="el-institute" class="form-control input-sm" data-placeholder="Ινστιτούτο" name="institute" disabled="disabled">
+<option selected="" disabled="" value="">Ινστιτούτο</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label hidden-xs hidden-sm col-md-3" for="el-other" disabled="disabled">Αλλο</label>
+<div class="col-xs-12 col-sm-12 col-md-9">
+<input id="el-other" class="form-control input-sm" type="Array" value="" name="other" placeholder="Αλλο" disabled="disabled">
+</div>
+</div>
+</div>
+
+<div id="eltmhmalessionadd" class="form-group text-center">
+<button id="submit" class="btn btn-lg btn-primary" type="button" name="submit">Υποβολή</button>
+<input type="hidden" value="" name="id">
+<input id="hididrima" type="hidden" value="" name="hididrima">
+<input id="hidsxolh" type="hidden" value="" name="hidsxolh">
+<input id="hidtmhma" type="hidden" value="" name="hidtmhma">
+<input id="hidereunitiko" type="hidden" value="" name="hidereunitiko">
+<input id="hidinstitute" type="hidden" value="" name="hidinstitute">
+<input id="hidnewselect" type="hidden" name="hidnewselect">
+</div>
+<input type="hidden" value="csrf58db77c8ec106" name="csrf_name">
+<input type="hidden" value="5ce00bae02a06bf77ce1c81413c35b2d" name="csrf_value">
+</fieldset>
+</div>
+</form>
+</div>
+</div>
+<footer class="footer">
+<p>
+Το
+<a href="http://edulabs.minedu.gov.gr/">http://edulabs.minedu.gov.gr</a>
+έχει αναπτυχθεί με την χρήση χρήση ανοιχτού λογισμικού.
+<br>
+Το περιεχόμενο διατίθεται με με άδεια
+<a target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Αναφορά Δημιουργού - Παρόμοια Διανομή</a>
+και το λογισμικό με άδεια
+<a target="_blank" href="https://joinup.ec.europa.eu/community/eupl/og_page/european-union-public-licence-eupl-v11">EUPL</a>
+.
+</p>
+</footer>
+</div>
+
+
+<script src="jquery-3.2.1.min.js">
+</script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="index-1.1.js">
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
