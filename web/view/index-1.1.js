@@ -71,16 +71,26 @@ tmimaselect +='<option selected=""  value="">Μάθημα</option>';
 tmimaselect +='<option value="1"></option>';
 tmimaselect +='</select>';
 tmimaselect +='</div>';
-tmimaselect +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ </label>';
+
+tmimaselect +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή</button>';
+//tmimaselect +='</div>';
+
+//tmimaselect +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">URL</label>';
+//tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
+tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" name="erga[]" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
+//tmimaselect +='</div>';
+
+tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
+tmimaselect +='<button class="del_field_button_url pull-right" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
+tmimaselect +='<button class="add_field_button_url pull-right" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselect +='</div>';
 tmimaselect +='</div>';
-tmimaselect +='</div>';
+tmimaselect +='</div><div style="margin-top:5px"> - </div>';
 
 tmimaselect1 ='<div class="col-xs-12 col-sm-12 col-md-9">';
-tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga[]">Προσθήκη Επιπλέον</button>';
+tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga[]">Προσθήκη Επιπλέον Μαθήματος</button>';
 tmimaselect1 +='</div>';
 
 $('#el-sxolh').on('change', function () {
