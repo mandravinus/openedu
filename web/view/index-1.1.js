@@ -85,9 +85,10 @@ tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" na
 tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
 tmimaselect +='<button class="del_field_button_url pull-right" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
 tmimaselect +='<button class="add_field_button_url pull-right" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
+tmimaselect +='<div style="margin-top:5px"> &nbsp; </div>';
 tmimaselect +='</div>';
 tmimaselect +='</div>';
-tmimaselect +='</div><div style="margin-top:5px"> - </div>';
+tmimaselect +='</div>';
 
 tmimaselect1 ='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga[]">Προσθήκη Επιπλέον Μαθήματος</button>';
