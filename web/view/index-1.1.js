@@ -1,6 +1,7 @@
 
-var DATA;
-var API = "http://127.0.0.1/";
+//var DATA; 
+//var API = "http://127.0.0.1/";   
+//indexconfig.js
 $(document).ready(function() {
     $('#el-idrima').attr("disabled", true);
     $('#el-sxolh').attr("disabled", true);

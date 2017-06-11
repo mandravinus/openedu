@@ -17,7 +17,8 @@ class diyConfig
 
 }
 
-$projectDir = '/var/www/aeitei';   //define the directory containing the project files
+require 'indexconfig.php';
+//$projectDir = '/var/www/aeitei';   //define the directory containing the project files
 
 // db
 $dbfile = $projectDir.'/db/sql.db';
