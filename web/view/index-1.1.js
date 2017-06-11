@@ -26,6 +26,12 @@ $('#newselect').on('change', function () {
 			var key = this.value;
 
 			$('#el-idrima').prop("disabled", false); 
+		$('#el-idrima').empty();
+		$('#el-sxolh').empty();
+		$('#eltmhmalession').empty();
+				$('#el-idrima').append($("<option></option>")
+				                    .attr("value", '1')
+				                    .text('Ίδρυμα'));
        		$.each(data.result.data, function(index, d){            
 
 				$('#el-idrima').append($("<option></option>")
@@ -47,11 +53,11 @@ $('#el-idrima').on('change', function () {
         data:{"department":uni},
         dataType: 'json',
     	success: function (data, statusText, resObject) {
-
-
 		$('#el-sxolh').prop("disabled", false); 
+		$('#el-sxolh').empty();
+		$('#eltmhmalession').empty();
+		$('#el-sxolh').append($("<option></option>").attr("value", '1').text('Σχολή'));
    		$.each(data.result.data, function(index, d){            
-
 			$('#el-sxolh').append($("<option></option>")
 			                    .attr("value", d.id)
 			                    .text(d.department));
@@ -83,12 +89,25 @@ tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" na
 //tmimaselect +='</div>';
 
 tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
-tmimaselect +='<button class="del_field_button_url pull-right" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
+//tmimaselect +='<button class="del_field_button_url pull-right" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
 tmimaselect +='<button class="add_field_button_url pull-right" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselect +='<div style="margin-top:5px"> &nbsp; </div>';
 tmimaselect +='</div>';
 tmimaselect +='</div>';
 tmimaselect +='</div>';
+
+tmimaselecturl ='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
+tmimaselecturl +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturl +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
+tmimaselecturl +='<input class="form-control input-sm eltmimalessonurl" value="" name="erga[]" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
+
+tmimaselecturl +='<button class="del_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
+tmimaselecturl +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
+tmimaselecturl +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
+tmimaselecturl +='</div>';
+tmimaselecturl +='</div>';
+tmimaselecturl +='</div>';
+
 
 tmimaselect1 ='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga[]">Προσθήκη Επιπλέον Μαθήματος</button>';
@@ -161,6 +180,23 @@ $(document).on('click', '#add_field_button', function(){
     getlessons();
 });
 
+
+$(document).on('click', '.add_field_button_url', function(){ 
+    	//$(".eltimagroup").append(tmimaselecturl);
+    	$(this).parent().parent().append(tmimaselecturl);
+});
+
+$(document).on('click', '.del_field_button_url', function(){ 
+	$(this).parent().prev('label.eltmimalessonurl').remove();
+	//$(this).parent().find(".eltmimalessonurl").remove();
+	//$(this).parent().parent().children('.eltmimalessonurldiv').closest().remove();
+	$(this).parent().remove();
+	//$(this).parent().prev('div.eltmimalessonurldiv').remove();
+	//$('.eltmimagroup > div:last-child').remove();
+
+	//$(document).children("div[class=eltmimalessonurldiv]:last").remove();
+	//$(".eltmimagroup").children("div[class=eltmimalessonurldiv]:last").remove();
+});
 
 $(document).on('click', '.del_field_button', function(){ 
     var del = $(".del_field_button"); //Fields wrapper
