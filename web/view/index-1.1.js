@@ -18,19 +18,21 @@ $(document).ready(function() {
 
 
 $('#newselect').on('change', function () {
+    var newselect = $("#newselect option").filter(":selected").text();
+    if(newselect != 'Διοικητικό Προσωπικό'){
+	$('#tmimaerg').append(tmimaerg);
+    }
     $.ajax({
         url: API+'uni',
         type: 'GET',
         dataType: 'json',
     	success: function (data, statusText, resObject) {
-   
-			var key = this.value;
-
-			$('#el-idrima').prop("disabled", false); 
+		var key = this.value;
+		$('#el-idrima').prop("disabled", false); 
 		$('#el-idrima').empty();
 		$('#el-sxolh').empty();
 		$('#eltmhmalession').empty();
-				$('#el-idrima').append($("<option></option>")
+		$('#el-idrima').append($("<option></option>")
 				                    .attr("value", '1')
 				                    .text('Ίδρυμα'));
        		$.each(data.result.data, function(index, d){            
@@ -38,14 +40,12 @@ $('#newselect').on('change', function () {
 				$('#el-idrima').append($("<option></option>")
 				                    .attr("value", d.id)
 				                    .text(d.name));
-			});
-       
-   }
-});
+		});
+   	}
+    });
 });
 
 $('#el-idrima').on('change', function () {
-
     var key = this.value;
     var uni = $("#el-idrima option").filter(":selected").text();
     $.ajax({
@@ -63,10 +63,7 @@ $('#el-idrima').on('change', function () {
 			                    .attr("value", d.id)
 			                    .text(d.department));
 		});
-
     }
-        
-   
   });
 });
 
@@ -82,15 +79,9 @@ tmimaselect +='</div>';
 tmimaselect +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-//tmimaselect +='</div>';
-
-//tmimaselect +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">URL</label>';
-//tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" name="erga[]" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
-//tmimaselect +='</div>';
 
 tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
-//tmimaselect +='<button class="del_field_button_url pull-right" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
 tmimaselect +='<button class="add_field_button_url pull-right" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselect +='<div style="margin-top:5px"> &nbsp; </div>';
 tmimaselect +='</div>';
@@ -101,7 +92,6 @@ tmimaselecturl ='<label class="eltmimalessonurl control-label hidden-xs hidden-s
 tmimaselecturl +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturl +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
 tmimaselecturl +='<input class="form-control input-sm eltmimalessonurl" value="" name="erga[]" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
-
 tmimaselecturl +='<button class="del_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
 tmimaselecturl +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselecturl +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
@@ -109,6 +99,49 @@ tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 
+tmimaerg =  '<p>Συμμετέχετε σε καποιο εργαστήριο/ερευνητική ομάδα στο ίδρυμα σας, που ασχολείται ή χρησιμοποιεί Ανοιχτές τεχνολογίες , Ανοιχτό λογισμικό ή περιεχόμενο?</p>';
+tmimaerg +=  '	<div class="row">';
+tmimaerg += '		<div class="col-sm-6">';
+tmimaerg += '		    <div class="radio radio-inline">';
+tmimaerg += '			<input class="radio1" name="radio1" id="radio1" value="option1" checked="" type="radio">';
+tmimaerg += '			<label for="radio1">';
+tmimaerg += '			    Οχι';
+tmimaerg += '			</label>';
+tmimaerg += '		    </div>';
+tmimaerg += '		    <div class="radio radio-inline">';
+tmimaerg += '			<input class="radio1" name="radio1" id="radio2" value="option2" type="radio">';
+tmimaerg += '			<label for="radio2">';
+tmimaerg += '			    Ναι';
+tmimaerg += '			</label>';
+tmimaerg += '		    </div>';
+tmimaerg += '		</div>';
+tmimaerg += '	</div>';
+tmimaerg += '<div  style="margin-top:5px"> &nbsp; </div>';
+
+tmimaerg1 ='<label class="control-label hidden-xs hidden-sm col-md-5" for="el-tmhma"> Όνομα εργαστηρίου/ Ερευνητικής ομάδας </label>';
+tmimaerg1 +='<div class="col-xs-12 col-sm-15 col-md-20">';
+tmimaerg1 +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="Όνομα εργαστηρίου/ Ερευνητικής ομάδας" type="text">';
+tmimaerg1 += '</div>';
+
+tmimaerg1 +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΔΡΑΣΤΗΡΙΟΤΗΤΑ </label>';
+tmimaerg1 +='<div class="col-xs-12 col-sm-12 col-md-9">';
+tmimaerg1 +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="ΔΡΑΣΤΗΡΙΟΤΗΤΑ" type="text">';
+tmimaerg1 += '</div>';
+
+tmimaerg1 +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">Περιγραφή</label>';
+tmimaerg1 +='<div class="col-xs-12 col-sm-12 col-md-9">';
+tmimaerg1 +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="Περιγραφή δράσης" type="text">';
+tmimaerg1 += '</div>';
+
+tmimaerg1 +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΥΠΕΥΘΥΝΟΣ</label>';
+tmimaerg1 +='<div class="col-xs-12 col-sm-12 col-md-9">';
+tmimaerg1 +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="ΥΠΕΥΘΥΝΟΣ ΕΡΓΑΣΤΗΡΙΟΥ/ΟΜΑΔΑΣ" type="text">';
+tmimaerg1 += '</div>';
+
+tmimaerg1 +='<label class="control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΙΣΤΟΣΕΛΙΔΑ</label>';
+tmimaerg1 +='<div class="col-xs-12 col-sm-12 col-md-9">';
+tmimaerg1 +='<input class="form-control input-sm eltmimalesson" value="" name="erga[]" placeholder="ΙΣΤΟΣΕΛΙΔΑ ΕΡΓΑΣΤΗΡΙΟΥ ΟΜΑΔΑΣ" type="text">';
+tmimaerg1 += '</div>';
 
 tmimaselect1 ='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga[]">Προσθήκη Επιπλέον Μαθήματος</button>';
@@ -116,7 +149,6 @@ tmimaselect1 +='</div>';
 
 $('#el-sxolh').on('change', function () {
     var key = this.value;
-
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
     var department = $("#el-idrima option").filter(":selected").text();
     $.ajax({
@@ -125,29 +157,22 @@ $('#el-sxolh').on('change', function () {
         data:{"institution":department,"unisxolh":unisxolh},
         dataType: 'json',
     	success: function (data, statusText, resObject) {
-
-
 		$('#eltmhmalession').empty();
 		$('#eltmhmalession').append(tmimaselect);
 		$('#add_field_button').remove();
 		$('#eltmhmalessionadd').prepend(tmimaselect1);
-		//var selectlesson = $('#eltmhmalession').children("eltmhma :last");
 		var selectlesson = $('#eltmhmalession').find("select:last");
                 $.each(data.result.data, function(index, d){
-
                         selectlesson.append($("<option></option>")
                                             .attr("value", d.id)
                                             .text(d.lesson));
                 });
         }
-
-
     });
 });
 
 function getlessons() {
     var key = this.value;
-
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
     var department = $("#el-idrima option").filter(":selected").text();
     $.ajax({
@@ -156,55 +181,47 @@ function getlessons() {
         data:{"institution":department,"unisxolh":unisxolh},
         dataType: 'json',
     	success: function (data, statusText, resObject) {
-
-
-		//$('#eltmhmalession').append(tmimaselect);
-		//var selectlesson = $('#eltmhmalession').children("eltmhma :last");
 		var selectlesson = $('#eltmhmalession').find("select:last");
                 $.each(data.result.data, function(index, d){
-
                         selectlesson.append($("<option></option>")
                                             .attr("value", d.id)
                                             .text(d.lesson));
                 });
         }
-
-
     });
 };
 
 $(document).on('click', '#add_field_button', function(){ 
     var max_fields = 10; //maximum input boxes allowed
     var add_button = $("#add_field_button"); //Add button ID
-
     $('#eltmhmalession').append(tmimaselect);
     getlessons();
 });
 
+$(document).on('change', '.radio1', function(){ 
+	var radio = $('input[name=radio1]').filter(':checked').val();;
+	if(radio == "option1"){
+    		$('#tmimaerg1').empty();
+	}
+	if(radio == "option2"){
+    		$('#tmimaerg1').append(tmimaerg1);
+	}
+
+
+});
 
 $(document).on('click', '.add_field_button_url', function(){ 
-    	//$(".eltimagroup").append(tmimaselecturl);
     	$(this).parent().parent().append(tmimaselecturl);
 });
 
 $(document).on('click', '.del_field_button_url', function(){ 
 	$(this).parent().prev('label.eltmimalessonurl').remove();
-	//$(this).parent().find(".eltmimalessonurl").remove();
-	//$(this).parent().parent().children('.eltmimalessonurldiv').closest().remove();
 	$(this).parent().remove();
-	//$(this).parent().prev('div.eltmimalessonurldiv').remove();
-	//$('.eltmimagroup > div:last-child').remove();
-
-	//$(document).children("div[class=eltmimalessonurldiv]:last").remove();
-	//$(".eltmimagroup").children("div[class=eltmimalessonurldiv]:last").remove();
 });
 
 $(document).on('click', '.del_field_button', function(){ 
-    var del = $(".del_field_button"); //Fields wrapper
-
+    	var del = $(".del_field_button"); //Fields wrapper
 	$(this).parent().parent().remove();
-
-
 });
 
 $(document).on('click', '#submit', function(){ 
@@ -222,7 +239,6 @@ $(document).on('click', '#submit', function(){
 	etmimalession[c]["s"]=$(this).first().find('input').val();
 	c++;
     });
-    //var etmimalessionstring = JSON.stringify(etmimalession);
     $.ajax({
         url: API+'mathima',
         type: 'POST',
