@@ -20,7 +20,12 @@ $(document).ready(function() {
 $('#newselect').on('change', function () {
     var newselect = $("#newselect option").filter(":selected").text();
     if(newselect != 'Διοικητικό Προσωπικό'){
+	$('#tmimaerg').empty();
+	$('#tmimaerg1').empty();
 	$('#tmimaerg').append(tmimaerg);
+    }else{
+	$('#tmimaerg').empty();
+	$('#tmimaerg1').empty();
     }
     $.ajax({
         url: API+'uni',
