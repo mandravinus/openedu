@@ -14,18 +14,27 @@ $(document).ready(function() {
     $('label[for="el-other"]').attr("disabled", true);
     $('label[for="el-idrima"]').attr("disabled", true);
     $('label[for="el-sxolh"]').attr("disabled", true);
-
+    var NEWSELECT='';
 
 
 $('#newselect').on('change', function () {
     var newselect = $("#newselect option").filter(":selected").text();
-    if(newselect != 'Διοικητικό Προσωπικό'){
+    if(newselect == 'Διοικητικό Προσωπικό'){
+        $('#el-sxolh').attr("disabled", true);
+	$('#tmimaerg').empty();
+	$('#tmimaerg1').empty();
+        NEWSELECT = 'dioikitiko';
+    }else if(newselect == 'Μεταπτυχιακός φοιτητής'){
+        $('#el-sxolh').attr("disabled", true);
 	$('#tmimaerg').empty();
 	$('#tmimaerg1').empty();
 	$('#tmimaerg').append(tmimaerg);
+        NEWSELECT = 'meta';
     }else{
 	$('#tmimaerg').empty();
 	$('#tmimaerg1').empty();
+	$('#tmimaerg').append(tmimaerg);
+        NEWSELECT = 'allo';
     }
     $.ajax({
         url: API+'uni',
@@ -53,23 +62,36 @@ $('#newselect').on('change', function () {
 $('#el-idrima').on('change', function () {
     var key = this.value;
     var uni = $("#el-idrima option").filter(":selected").text();
-    $.ajax({
-        url: API+'department',
-        type: 'GET',
-        data:{"department":uni},
-        dataType: 'json',
-    	success: function (data, statusText, resObject) {
-		$('#el-sxolh').prop("disabled", false); 
-		$('#el-sxolh').empty();
+	if(NEWSELECT == 'dioikitiko'){
 		$('#eltmhmalession').empty();
-		$('#el-sxolh').append($("<option></option>").attr("value", '1').text('Σχολή'));
-   		$.each(data.result.data, function(index, d){            
-			$('#el-sxolh').append($("<option></option>")
-			                    .attr("value", d.id)
-			                    .text(d.department));
-		});
-    }
-  });
+		$('#eltmhmalession').append(tmimaselecturl);
+		$('#add_field_button').remove();
+		$('.del_field_button_url').remove();
+	}else if(NEWSELECT == 'meta'){
+		$('#eltmhmalession').empty();
+		$('#eltmhmalession').append(tmimaselecturlmeta);
+		$('#add_field_button').remove();
+		$('#eltmhmalessionadd').prepend(tmimaselect1);
+		//$('#add_field_button').remove();
+	}else{
+	    $.ajax({
+		url: API+'department',
+		type: 'GET',
+		data:{"department":uni},
+		dataType: 'json',
+		success: function (data, statusText, resObject) {
+			$('#el-sxolh').prop("disabled", false); 
+			$('#el-sxolh').empty();
+			$('#eltmhmalession').empty();
+			$('#el-sxolh').append($("<option></option>").attr("value", '1').text('Σχολή'));
+			$.each(data.result.data, function(index, d){            
+				$('#el-sxolh').append($("<option></option>")
+						    .attr("value", d.id)
+						    .text(d.department));
+			});
+	    }
+	  });
+	}
 });
 
 var tmimaselect = '<div class="eltimagroup">';
@@ -103,6 +125,30 @@ tmimaselecturl +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; <
 tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
+
+tmimaselecturlmeta ='<label class="bg-info eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">Τμήμα </label>';
+tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="Tμήμα" type="text">';
+tmimaselecturlmeta +='</div>';
+tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">Τίτλος μεταπτυχιακού </label>';
+tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="όνομα μεταπτυχιακού προγράματος" type="text">';
+tmimaselecturlmeta +='</div>';
+tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">Μάθημα </label>';
+tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="Μάθημα" type="text">';
+tmimaselecturlmeta +='</div>';
+
+tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-tmhma">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
+tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="erga[]" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalessonurl" value="" name="erga[]" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
+tmimaselecturlmeta +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
+tmimaselecturlmeta +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
+tmimaselecturlmeta +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
+tmimaselecturlmeta +='</div>';
+tmimaselecturlmeta +='</div>';
+tmimaselecturlmeta +='</div>';
 
 tmimaerg =  '<p>Συμμετέχετε σε καποιο εργαστήριο/ερευνητική ομάδα στο ίδρυμα σας, που ασχολείται ή χρησιμοποιεί Ανοιχτές τεχνολογίες , Ανοιχτό λογισμικό ή περιεχόμενο?</p>';
 tmimaerg +=  '	<div class="row">';
@@ -156,24 +202,28 @@ $('#el-sxolh').on('change', function () {
     var key = this.value;
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
     var department = $("#el-idrima option").filter(":selected").text();
-    $.ajax({
-        url: API+'mathima',
-        type: 'GET',
-        data:{"institution":department,"unisxolh":unisxolh},
-        dataType: 'json',
-    	success: function (data, statusText, resObject) {
-		$('#eltmhmalession').empty();
-		$('#eltmhmalession').append(tmimaselect);
-		$('#add_field_button').remove();
-		$('#eltmhmalessionadd').prepend(tmimaselect1);
-		var selectlesson = $('#eltmhmalession').find("select:last");
-                $.each(data.result.data, function(index, d){
-                        selectlesson.append($("<option></option>")
-                                            .attr("value", d.id)
-                                            .text(d.lesson));
-                });
-        }
-    });
+    if(NEWSELECT == 'dioikitiko'){
+    }else if(NEWSELECT == 'meta'){
+    }else{
+	    $.ajax({
+		url: API+'mathima',
+		type: 'GET',
+		data:{"institution":department,"unisxolh":unisxolh},
+		dataType: 'json',
+		success: function (data, statusText, resObject) {
+			$('#eltmhmalession').empty();
+			$('#eltmhmalession').append(tmimaselect);
+			$('#add_field_button').remove();
+			$('#eltmhmalessionadd').prepend(tmimaselect1);
+			var selectlesson = $('#eltmhmalession').find("select:last");
+			$.each(data.result.data, function(index, d){
+				selectlesson.append($("<option></option>")
+						    .attr("value", d.id)
+						    .text(d.lesson));
+			});
+		}
+	    });
+    }
 });
 
 function getlessons() {
@@ -199,8 +249,12 @@ function getlessons() {
 $(document).on('click', '#add_field_button', function(){ 
     var max_fields = 10; //maximum input boxes allowed
     var add_button = $("#add_field_button"); //Add button ID
-    $('#eltmhmalession').append(tmimaselect);
-    getlessons();
+    if(NEWSELECT == 'meta'){
+    	$('#eltmhmalession').append(tmimaselecturlmeta);
+    }else{
+    	$('#eltmhmalession').append(tmimaselect);
+    	getlessons();
+    }
 });
 
 $(document).on('change', '.radio1', function(){ 
@@ -226,7 +280,8 @@ $(document).on('click', '.del_field_button_url', function(){
 
 $(document).on('click', '.del_field_button', function(){ 
     	var del = $(".del_field_button"); //Fields wrapper
-	$(this).parent().parent().remove();
+	//$(this).parent().parent().remove();
+        $("#eltmhmalession").empty();	
 });
 
 $(document).on('click', '#submit', function(){ 
@@ -238,11 +293,18 @@ $(document).on('click', '#submit', function(){
     var department = $("#el-idrima option").filter(":selected").text();
     var etmimalession = {};
     var c=0;
-    $("#eltmhmalession .eltimagroup").each(function() {
-	etmimalession[c] = {};
-	etmimalession[c]["m"]=$(this).first().find("option:selected").text();
-	etmimalession[c]["s"]=$(this).first().find('input').val();
-	c++;
+    var cc=0;
+    $("#eltmhmalession .eltimagroup").each(function(i, obj) {
+		etmimalession[i] = {};
+		etmimalession[i]["m"]=$(this).first().find("option:selected").text();
+		etmimalession[i]["s"]=$(this).first().find('input').val();
+		c++;
+    	$("#eltmhmalession .eltmimalesson").each(function(i, obj) {
+		//alert($(this).val());
+    	});
+    	$("#eltmhmalession .eltmimalessonurl").each(function(i, obj) {
+		//alert($(this).val());
+    	});
     });
     $.ajax({
         url: API+'mathima',
