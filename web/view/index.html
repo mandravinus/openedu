@@ -91,13 +91,13 @@
 <div class="form-group">
 <label class="control-label hidden-xs hidden-sm col-md-3" for="el-onoma">Ονομα</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-onoma" class="form-control input-sm" type="text" value="" name="erga" placeholder="Ονομα">
+<input id="el-onoma" class="form-control input-sm" type="text" value="" name="onoma" placeholder="Ονομα">
 </div>
 </div>
 <div class="form-group">
 <label class="control-label hidden-xs hidden-sm col-md-3" for="el-eponimo">Επώνυμο</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-epitheto" class="form-control input-sm" type="text" value="" name="person" placeholder="Επώνυμο">
+<input id="el-epitheto" class="form-control input-sm" type="text" value="" name="epitheto" placeholder="Επώνυμο">
 </div>
 </div>
 <div class="form-group">
@@ -114,13 +114,13 @@
 <div class="form-group">
 <label class="control-label col-md-3" for="newselect">Επιλέξτε την ιδιότητά σας</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<select id="newselect" class="form-control" name="newselect">
+<select id="newselect" class="form-control" name="eidikotita">
 <option id="space" selected="" value="space"></option>
-<option id="idrimata" value="idrimata">Διδακτικό Ερευνητικό Προσωπικό</option>
-<option id="ereunitika" value="ereunitika">Εργαστηριακό Προσωπικό -Βοηθοί και Επιστημονικοί Συνεργάτες</option>
-<option id="ereunitika" value="ereunitika">Διοικητικό Προσωπικό</option>
-<option id="ereunitika" value="ereunitika">Φοιτητής/τρια</option>
-<option id="ereunitika" value="ereunitika">Μεταπτυχιακός φοιτητής</option>
+<option id="idrimata" value="didaktiko">Διδακτικό Ερευνητικό Προσωπικό</option>
+<option id="idrimata1" value="ergastiriako">Εργαστηριακό Προσωπικό -Βοηθοί και Επιστημονικοί Συνεργάτες</option>
+<option id="idrimata2" value="dioikitiko">Διοικητικό Προσωπικό</option>
+<option id="idrimata3" value="fititis">Φοιτητής/τρια</option>
+<option id="idrimata4" value="meta">Μεταπτυχιακός φοιτητής</option>
 </select>
 	<div id="tmimaerg" class="col-xs-12 col-sm-12 col-md-9">
 	</div>
@@ -150,47 +150,16 @@
 <div id="eltmhmalession" class="form-group">
 </div>
 
-<div id="second" style="display: none;">
-<div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-ereunitiko" disabled="disabled">Ερευνητικό Κέντρο</label>
-<div class="col-xs-12 col-sm-12 col-md-9">
-<select id="el-ereunitiko" class="form-control input-sm" data-placeholder="Ερευνητικό Κέντρο" name="ereunitiko" disabled="disabled">
-<option selected="" disabled="" value="">Ερευνητικό Κέντρο</option>
-</select>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-institute" disabled="disabled">Ινστιτούτο</label>
-<div class="col-xs-12 col-sm-12 col-md-9">
-<select id="el-institute" class="form-control input-sm" data-placeholder="Ινστιτούτο" name="institute" disabled="disabled">
-<option selected="" disabled="" value="">Ινστιτούτο</option>
-</select>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-other" disabled="disabled">Αλλο</label>
-<div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-other" class="form-control input-sm" type="Array" value="" name="other" placeholder="Αλλο" disabled="disabled">
-</div>
-</div>
-</div>
 
 <div id="eltmhmalessionadd" class="form-group text-center">
 <button id="submit" class="btn btn-lg btn-primary" type="button" name="submit">Υποβολή</button>
-<input type="hidden" value="" name="id">
-<input id="hididrima" type="hidden" value="" name="hididrima">
-<input id="hidsxolh" type="hidden" value="" name="hidsxolh">
-<input id="hidtmhma" type="hidden" value="" name="hidtmhma">
-<input id="hidereunitiko" type="hidden" value="" name="hidereunitiko">
-<input id="hidinstitute" type="hidden" value="" name="hidinstitute">
-<input id="hidnewselect" type="hidden" name="hidnewselect">
 </div>
-<input type="hidden" value="csrf58db77c8ec106" name="csrf_name">
-<input type="hidden" value="5ce00bae02a06bf77ce1c81413c35b2d" name="csrf_value">
 </fieldset>
 </div>
 </form>
 </div>
+</div>
+<div id="console" class="form-group text-center">
 </div>
 <footer class="footer">
 <p>
