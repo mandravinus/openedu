@@ -197,6 +197,21 @@ tmimaselect1 ='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect1 +='<button id="add_field_button" class="btn btn-lg btn-primary" type="button" name="buttonerga">Προσθήκη Επιπλέον Μαθήματος</button>';
 tmimaselect1 +='</div>';
 
+var ok = '<h1> </h1>';
+ok += ' <br> ';
+ok += ' <br> ';
+ok += '<p>';
+
+ok += ' <br> ';
+ok += ' <br> ';
+ok += ' <br> ';
+ok += '<h3>Σας ευχαριστούμε που συμμετείχατε στην έρευνα του Οργανισμού μας.</h3>'
+ok += '<h3> Η συμμετοχή σας είναι πολύτιμη</h3>';
+ok += ' <br> ';
+ok += ' <br> ';
+ok += '<h4> <a href="https://edu-quest.ellak.gr/view/">Αρχική σελίδα</a> </h4>';
+ok += '</p>';
+
 $('#el-sxolh').on('change', function () {
     var key = this.value;
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
@@ -385,6 +400,10 @@ var serializedArr1 = JSON.stringify( ellak );
         data:{"data":serializedArr, "ellak":ellak},
         dataType: 'json',
     	success: function (data, statusText, resObject) {
+		$('#tableresponsive').empty();
+		$('#tableresponsive1').empty();
+		$('#footer').empty();
+		$('#tableresponsive1').append(ok);
                         //.append($("<option></option>") .attr("value", d.id) .text(d.lesson));
         }
     });
