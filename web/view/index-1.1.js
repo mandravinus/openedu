@@ -61,6 +61,8 @@ $('#newselect').on('change', function () {
 $('#el-idrima').on('change', function () {
     var key = this.value;
     var uni = $("#el-idrima option").filter(":selected").text();
+    var unival = $("#el-idrima option").filter(":selected").val();
+    var unitmp = unival.substring(0,1);
 	if(NEWSELECT == 'dioikitiko'){
 		$('#eltmhmalession').empty();
 		$('#eltmhmalession').append(tmimaselecturl);
@@ -72,6 +74,17 @@ $('#el-idrima').on('change', function () {
 		$('#add_field_button').remove();
 		$('#eltmhmalessionadd').prepend(tmimaselect1);
 		//$('#add_field_button').remove();
+	}
+	if(unitmp == 'e'){
+		$('#eltmhmalession').empty();
+		$('#eltmhmalession').append(tmimaselecturl);
+		$('#add_field_button').remove();
+		$('.del_field_button_url').remove();
+	}else if(unitmp == 'i'){
+		$('#eltmhmalession').empty();
+		$('#eltmhmalession').append(tmimaselecturlmeta1);
+		$('#add_field_button').remove();
+		$('#eltmhmalessionadd').prepend(tmimaselect1);
 	}else{
 	    $.ajax({
 		url: API+'department',
@@ -148,6 +161,25 @@ tmimaselecturlmeta +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbs
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
+
+
+tmimaselecturlmeta1 ='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metamathima">Μάθημα </label>';
+tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" type="text">';
+tmimaselecturlmeta1 +='</div>';
+
+tmimaselecturlmeta1 +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metatechnologia">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
+tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="ellak" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
+tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalessonurl" value="" name="ellakurl" placeholder="ΤΟΠΟΘΕΣΙΑ ΑΝΟΙΧΤΗΣ ΤΕΧΝΟΛΟΓΙΑΣ/ΛΟΓΙΣΜΙΚΟΥ/ΠΕΡΙΕΧΟΜΕΝΟΥ" type="text">';
+tmimaselecturlmeta1 +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
+tmimaselecturlmeta1 +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
+tmimaselecturlmeta1 +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
+tmimaselecturlmeta1 +='</div>';
+tmimaselecturlmeta1 +='</div>';
+tmimaselecturlmeta1 +='</div>';
+
+
 
 tmimaerg =  '<p>Συμμετέχετε σε καποιο εργαστήριο/ερευνητική ομάδα στο ίδρυμα σας, που ασχολείται ή χρησιμοποιεί Ανοιχτές τεχνολογίες , Ανοιχτό λογισμικό ή περιεχόμενο?</p>';
 tmimaerg +=  '	<div class="row">';
@@ -263,8 +295,12 @@ function getlessons() {
 $(document).on('click', '#add_field_button', function(){ 
     var max_fields = 10; //maximum input boxes allowed
     var add_button = $("#add_field_button"); //Add button ID
+    var unival = $("#el-idrima option").filter(":selected").val();
+    var unitmp = unival.substring(0,1);
     if(NEWSELECT == 'meta'){
     	$('#eltmhmalession').append(tmimaselecturlmeta);
+    }else if(unitmp == 'i'){
+    	$('#eltmhmalession').append(tmimaselecturlmeta1);
     }else{
     	$('#eltmhmalession').append(tmimaselect);
     	getlessons();
