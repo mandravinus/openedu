@@ -18,6 +18,7 @@ class diyConfig
 }
 
 require 'indexconfig.php';
+require $projectDir.'/restapi/file.php';
 //$projectDir = '/var/www/aeitei';   //define the directory containing the project files
 
 // db
@@ -29,6 +30,7 @@ diyConfig::write('db.basename', '');
 diyConfig::write('db.username', '');
 diyConfig::write('db.password', '');
 
+diyConfig::write('restapi', $base64Pass);
 //=========================  REQUIRE ==================================
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -73,6 +75,11 @@ $diy_storage = function ()
         return $db;
 };
 
+$diy_restapi = function()
+{
+	$restapi['restapi'] = diyConfig::read('restapi');
+	return $restapi;
+};
 
 //=========================  ROUTE ==================================
 /*Directories that contain api POST/GET*/

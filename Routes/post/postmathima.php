@@ -3,7 +3,7 @@
 
 
 
-$app->post('/mathima', function($request, $response) use ($diy_storage){
+$app->post('/mathima', function($request, $response) use ($diy_storage, $diy_restapi){
 
 
 
@@ -33,6 +33,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage){
 	   //POST or PUT parameters list
 	    $dget[$key]=$param;
 	}
+	$content = '';
    $unisxolh = $allPostPutVars['unisxolh'];
    $department = $allPostPutVars['department'];
    $onoma = $allPostPutVars['onoma'];
@@ -81,7 +82,11 @@ CREATE TABLE datameta(
 		$stmt->bindValue(':meta', $dget["meta"]);
 		$stmt->bindValue(':metatitlos', $dget["metatitlos"]);
 		$stmt->bindValue(':idrima', $dget["idrima"]);
+		$content .= "ΙΔΡΥΜΑ: ".$dget["idrima"];
 		$stmt->bindValue(':sxolh', $dget["sxolh"]);
+		$content .= "<br>";
+		$content .= " ΣΧΟΛΗ: ".$dget["sxolh"];
+		$content .= "<br>";
         	$stmt->execute();
 
         	$lastid = $storage->lastInsertId();
@@ -101,12 +106,26 @@ CREATE TABLE datameta(
 						$stmt1->bindValue(':mathima', '');
 					}else{
 						$stmt1->bindValue(':mathima', $dget["ellak"][$i]["mathima"]);
+						$contentellakm = " ΜΑΘΗΜΑ: ".$dget["ellak"][$i]["mathima"];
+						$contentellakm .= "<br>";
 					}
-					if($dget["ellak"][$i]["tech"] != '')
+					if($dget["ellak"][$i]["tech"] != ''){
 						$stmt1->bindValue(':ellak', $dget["ellak"][$i]["tech"]);
-					if($dget["ellak"][$i]["url"] != '')
+						$contentellakt = " ΤΕΧΝΟΛΟΓΙΑ: ".$dget["ellak"][$i]["tech"];
+						$contentellakt .= "<br>";
+					}
+					elseif($dget["ellak"][$i]["url"] != ''){
 						$stmt1->bindValue(':ellakurl', $dget["ellak"][$i]["url"]);
+						$contentellaku = " URL: ".$dget["ellak"][$i]["url"];
+						$contentellaku .= "<br>";
+					}
 				if($i == $ii){
+					$content .= $contentellakm;
+					$content .= $contentellakt;
+					$content .= $contentellaku;
+					$contentellakm='';
+					$contentellakt='';
+					$contentellaku='';
 					$stmt1->execute();
 					$ii = $ii + 2;
 				}
@@ -114,10 +133,43 @@ CREATE TABLE datameta(
 		
 
 	//result_messages===============================================================      
+   	$restapi = $diy_restapi();
+   	$restapitmp = $restapi['restapi'];
+	//$rest['content'] = $dget; 
+	//$rest['content'] = 'test test 1'; 
+	//$rest['title'] = 'my titlos 1'; 
+	//$rest['status'] = 'publish'; 
+	//$data_json =  json_decode( $rest );
+	$data_json =  '{ "title": "this is great posti1", "content": "'.$content.'", "status":"publish" }';
+	//$exec = 'curl --header "Authorization: Basic YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y=" -H "Content-Type: application/json" -X post   -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
+	$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
+	exec($exec);
+/*
+	$restheaders = array(
+	    'Content-Type: application/json;charset=utf-8',
+    	    "Cache-Control: no-cache",
+            "Pragma: no-cache" 
+	);
+	    //"Authorization: Basic " . "YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y="
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, "http://wp/wp-json/wp/v2/posts ");
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $restheaders);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 60); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$restresponse  = curl_exec($ch);
+	curl_close($ch	);
+
+    $err     = curl_errno($ch);
+    $errmsg  = curl_error($ch) ; 
+*/
         $result["result"]=  $q;
-        $result["dget"]=  $dget;
-        $result["dgettmp"]=  $dgettmp["test"];
-        $result["dgettmp1"]=  $arr_length;
+        //$result["dget"]=  $dget;
+        //$result["dgettmp"]=  $restresponse;
+        //$result["dgettmp1"]=  $exec;
         //$result["g"]=  $g;
         $result["status"] = "200";
         $result["message"] = "NoErrors";
