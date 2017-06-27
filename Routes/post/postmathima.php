@@ -33,7 +33,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 	   //POST or PUT parameters list
 	    $dget[$key]=$param;
 	}
-	$content = '';
+	$content = '<table><tr><td>ΙΔΡΥΜΑ</td><td>ΣΧΟΛΗ</td><td>ΜΑΘΗΜΑ</td><td>ΤΕΧΝΟΛΟΓΙΑ</td><td>URL</td><tr>';
    $unisxolh = $allPostPutVars['unisxolh'];
    $department = $allPostPutVars['department'];
    $onoma = $allPostPutVars['onoma'];
@@ -82,11 +82,11 @@ CREATE TABLE datameta(
 		$stmt->bindValue(':meta', $dget["meta"]);
 		$stmt->bindValue(':metatitlos', $dget["metatitlos"]);
 		$stmt->bindValue(':idrima', $dget["idrima"]);
-		$content .= "ΙΔΡΥΜΑ: ".$dget["idrima"];
+		$content .= "<tr><td>".$dget["idrima"];
 		$stmt->bindValue(':sxolh', $dget["sxolh"]);
-		$content .= "<br>";
-		$content .= " ΣΧΟΛΗ: ".$dget["sxolh"];
-		$content .= "<br>";
+		$content .= "</td><td>";
+		$content .= $dget["sxolh"];
+		$content .= "</td>";
         	$stmt->execute();
 
         	$lastid = $storage->lastInsertId();
@@ -106,23 +106,28 @@ CREATE TABLE datameta(
 						$stmt1->bindValue(':mathima', '');
 					}else{
 						$stmt1->bindValue(':mathima', $dget["ellak"][$i]["mathima"]);
-						$contentellakm = " ΜΑΘΗΜΑ: ".$dget["ellak"][$i]["mathima"];
-						$contentellakm .= "<br>";
+						$contentellakm = "<td>";
+						$contentellakm .= $dget["ellak"][$i]["mathima"];
+						$contentellakm .= "</td>";
 					}
 					if($dget["ellak"][$i]["tech"] != ''){
 						$stmt1->bindValue(':ellak', $dget["ellak"][$i]["tech"]);
-						$contentellakt = " ΤΕΧΝΟΛΟΓΙΑ: ".$dget["ellak"][$i]["tech"];
-						$contentellakt .= "<br>";
+						$contentellakt = "<td>";
+						$contentellakt .= $dget["ellak"][$i]["tech"];
+						$contentellakt .= "</td>";
 					}
 					elseif($dget["ellak"][$i]["url"] != ''){
 						$stmt1->bindValue(':ellakurl', $dget["ellak"][$i]["url"]);
-						$contentellaku = " URL: ".$dget["ellak"][$i]["url"];
-						$contentellaku .= "<br>";
+						$contentellaku = "<td>";
+						$contentellaku .= $dget["ellak"][$i]["url"];
+						$contentellaku .= "</td>";
+						$contentellaku .= "</tr>";
 					}
 				if($i == $ii){
 					$content .= $contentellakm;
 					$content .= $contentellakt;
 					$content .= $contentellaku;
+					$content .= '<td></td><td></td>';
 					$contentellakm='';
 					$contentellakt='';
 					$contentellaku='';
@@ -130,7 +135,7 @@ CREATE TABLE datameta(
 					$ii = $ii + 2;
 				}
 			}
-		
+	$content .= '</table>';;	
 
 	//result_messages===============================================================      
    	$restapi = $diy_restapi();
@@ -140,7 +145,7 @@ CREATE TABLE datameta(
 	//$rest['title'] = 'my titlos 1'; 
 	//$rest['status'] = 'publish'; 
 	//$data_json =  json_decode( $rest );
-	$data_json =  '{ "title": "this is great posti1", "content": "'.$content.'", "status":"publish" }';
+	$data_json =  '{ "title": "Ερωτηματολόγιο για το ανοιχτό λογισμικό", "content": "'.$content.'", "status":"publish" }';
 	//$exec = 'curl --header "Authorization: Basic YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y=" -H "Content-Type: application/json" -X post   -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
 	$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
 	exec($exec);
