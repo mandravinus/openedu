@@ -31,6 +31,7 @@ diyConfig::write('db.username', '');
 diyConfig::write('db.password', '');
 
 diyConfig::write('restapi', $base64Pass);
+diyConfig::write('endpoint', $endpoint);
 //=========================  REQUIRE ==================================
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -78,6 +79,7 @@ $diy_storage = function ()
 $diy_restapi = function()
 {
 	$restapi['restapi'] = diyConfig::read('restapi');
+	$restapi['endpoint'] = diyConfig::read('endpoint');
 	return $restapi;
 };
 

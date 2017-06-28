@@ -140,6 +140,7 @@ CREATE TABLE datameta(
 	//result_messages===============================================================      
    	$restapi = $diy_restapi();
    	$restapitmp = $restapi['restapi'];
+   	$restapipoint = $restapi['endpoint'];
 	//$rest['content'] = $dget; 
 	//$rest['content'] = 'test test 1'; 
 	//$rest['title'] = 'my titlos 1'; 
@@ -147,7 +148,7 @@ CREATE TABLE datameta(
 	//$data_json =  json_decode( $rest );
 	$data_json =  '{ "title": "Ερωτηματολόγιο για το ανοιχτό λογισμικό", "content": "'.$content.'", "status":"publish" }';
 	//$exec = 'curl --header "Authorization: Basic YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y=" -H "Content-Type: application/json" -X post   -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
-	$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
+	$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i '.$restapipoint.' -d '."'".$data_json."'";
 	exec($exec);
 /*
 	$restheaders = array(
