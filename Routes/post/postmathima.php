@@ -33,7 +33,6 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 	   //POST or PUT parameters list
 	    $dget[$key]=$param;
 	}
-	$content = '<table><tr><td>ΙΔΡΥΜΑ</td><td>ΣΧΟΛΗ</td><td>ΜΑΘΗΜΑ</td><td>ΤΕΧΝΟΛΟΓΙΑ</td><td>URL</td><tr>';
    $unisxolh = $allPostPutVars['unisxolh'];
    $department = $allPostPutVars['department'];
    $onoma = $allPostPutVars['onoma'];
@@ -43,28 +42,11 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
    $lesson = $etmimalession[0]["m"];
    $ellak = $etmimalession[0]["s"];
    $g='';
-/*
-   $dget["unisxolh"] = $allPostPutVars['unisxolh'];
-   $dget["department"] = $allPostPutVars['department'];
-   $dget["onoma"] = $allPostPutVars['onoma'];
-   $dget["epitheto"] = $allPostPutVars['epitheto'];
-   $dget["email"] = $allPostPutVars['email'];
-   $dget["etmimalession"] = $allPostPutVars['etmimalession'];
-CREATE TABLE datamathima(
-  "id" INTEGER PRIMARY KEY,
-  "mathima" TEXT,
-  "ellak" TEXT,
-  "ellakurl" TEXT
-);
-CREATE TABLE datameta(
-  "id" INTEGER PRIMARY KEY,
-  "metamathima" TEXT,
-  "ellak" TEXT,
-  "ellakurl" TEXT
-);
-*/
 
    $storage = $diy_storage();
+   $restapi = $diy_restapi();
+   $restapitmp = $restapi['restapi'];
+   $restapipoint = $restapi['endpoint'];
     try {
  		$g = 'INSERT INTO dataellak ( "onoma", "epitheto", "email", "eidikotita", "ergastirio", "ergastirioonoma", "ergastiriodrastiriotita", "ergastirioperigrafi", "ergastirioypefthinos", "ergastiriourl", "meta", "metatitlos", "idrima", "sxolh" ) VALUES ( :onoma, :epitheto, :email, :eidikotita, :ergastirio, :ergastirioonoma, :ergastiriodrastiriotita, :ergastirioperigrafi, :ergastirioypefthinos, :ergastiriourl, :meta, :metatitlos, :idrima, :sxolh)';
 		$tmp = $data['eidikotita'];
@@ -82,11 +64,19 @@ CREATE TABLE datameta(
 		$stmt->bindValue(':meta', $dget["meta"]);
 		$stmt->bindValue(':metatitlos', $dget["metatitlos"]);
 		$stmt->bindValue(':idrima', $dget["idrima"]);
-		$content .= "<tr><td>".$dget["idrima"];
 		$stmt->bindValue(':sxolh', $dget["sxolh"]);
-		$content .= "</td><td>";
-		$content .= $dget["sxolh"];
-		$content .= "</td>";
+
+		$fields['edu_quest_applicant_name']= $dget["onoma"];
+		$fields['edu_quest_applicant_surname']= $dget["epitheto"];
+		$fields['edu_quest_applicant_email']= $dget["email"];
+		$fields['edu_quest_lab_name']=$dget["ergastirioonoma"];
+		$fields['edu_quest_lab_activity']= $dget["ergastiriodrastiriotita"];
+		$fields['edu_quest_lab_activity_description']= $dget["ergastirioperigrafi"];
+		$fields['edu_quest_lab_head']= $dget["ergastirioypefthinos"];
+		$fields['edu_quest_lab_website']= $dget["ergastiriourl"];
+		$fields['edu_quest_institution']=$dget["idrima"];
+		$fields['edu_quest_department']=$dget["sxolh"];
+
         	$stmt->execute();
 
         	$lastid = $storage->lastInsertId();
@@ -106,28 +96,32 @@ CREATE TABLE datameta(
 						$stmt1->bindValue(':mathima', '');
 					}else{
 						$stmt1->bindValue(':mathima', $dget["ellak"][$i]["mathima"]);
-						$contentellakm = "<td>";
-						$contentellakm .= $dget["ellak"][$i]["mathima"];
-						$contentellakm .= "</td>";
+						$contentellakm = $dget["ellak"][$i]["mathima"];
 					}
 					if($dget["ellak"][$i]["tech"] != ''){
 						$stmt1->bindValue(':ellak', $dget["ellak"][$i]["tech"]);
-						$contentellakt = "<td>";
-						$contentellakt .= $dget["ellak"][$i]["tech"];
-						$contentellakt .= "</td>";
+						$contentellakt = $dget["ellak"][$i]["tech"];
 					}
 					elseif($dget["ellak"][$i]["url"] != ''){
 						$stmt1->bindValue(':ellakurl', $dget["ellak"][$i]["url"]);
-						$contentellaku = "<td>";
-						$contentellaku .= $dget["ellak"][$i]["url"];
-						$contentellaku .= "</td>";
-						$contentellaku .= "</tr>";
+						$contentellaku = $dget["ellak"][$i]["url"];
 					}
 				if($i == $ii){
-					$content .= $contentellakm;
-					$content .= $contentellakt;
-					$content .= $contentellaku;
-					$content .= '<td></td><td></td>';
+					$fields['edu_quest_course']= $contentellakm;
+					$fields['edu_quest_software']= $contentellakt;
+					$fields['edu_quest_software_url']= $contentellaku;
+					$TITLOS = $dget["email"];
+
+					$data_json =  '{ "title": "'.$TITLOS.'", "status":"publish" }';
+					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post  '.$restapipoint.' -d '."'".$data_json."'";
+
+					$exec .= " | jq '.id' 2>&1";
+					exec($exec, $output, $return_var);
+					$fields1['fields']=$fields;
+					$content1 = json_encode($fields1);
+					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post  '.$restapipoint.'/${'.$output[0].'} -d '."'".$content1."'";
+
+					$exec .= " | jq '.id' 2>&1";
 					$contentellakm='';
 					$contentellakt='';
 					$contentellaku='';
@@ -135,47 +129,18 @@ CREATE TABLE datameta(
 					$ii = $ii + 2;
 				}
 			}
-	$content .= '</table>';;	
+	$content = json_encode($fields);
 
 	//result_messages===============================================================      
-   	$restapi = $diy_restapi();
-   	$restapitmp = $restapi['restapi'];
-   	$restapipoint = $restapi['endpoint'];
-	//$rest['content'] = $dget; 
-	//$rest['content'] = 'test test 1'; 
-	//$rest['title'] = 'my titlos 1'; 
-	//$rest['status'] = 'publish'; 
-	//$data_json =  json_decode( $rest );
-	$data_json =  '{ "title": "Ερωτηματολόγιο για το ανοιχτό λογισμικό", "content": "'.$content.'", "status":"publish" }';
-	//$exec = 'curl --header "Authorization: Basic YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y=" -H "Content-Type: application/json" -X post   -i http://wp/wp-json/wp/v2/posts -d '."'".$data_json."'";
-	$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i '.$restapipoint.' -d '."'".$data_json."'";
-	exec($exec);
-/*
-	$restheaders = array(
-	    'Content-Type: application/json;charset=utf-8',
-    	    "Cache-Control: no-cache",
-            "Pragma: no-cache" 
-	);
-	    //"Authorization: Basic " . "YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y="
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, "http://wp/wp-json/wp/v2/posts ");
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $restheaders);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 60); 
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); 
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
-	curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$restresponse  = curl_exec($ch);
-	curl_close($ch	);
-
-    $err     = curl_errno($ch);
-    $errmsg  = curl_error($ch) ; 
-*/
+	//$data_json =  '{ "title": "Ερωτηματολόγιο για το ανοιχτό λογισμικό", "content": "'.$content.'", "status":"publish" }';
+	//$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i '.$restapipoint.' -d '."'".$data_json."'";
+	//exec($exec);
         $result["result"]=  $q;
         //$result["dget"]=  $dget;
-        //$result["dgettmp"]=  $restresponse;
+        //$result["dgettmp"]=  $content1;
         //$result["dgettmp1"]=  $exec;
+        //$result["dgettmp2"]=  $output;
+        //$result["dgettmp3"]=  $return_var;
         //$result["g"]=  $g;
         $result["status"] = "200";
         $result["message"] = "NoErrors";
