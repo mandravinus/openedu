@@ -113,7 +113,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 					$fields['edu_quest_software_url']= $contentellaku;
 					$TITLOS = $dget["email"];
 
-					$data_json =  '{ "title": "'.$TITLOS.'", "status":"publish" }';
+					$data_json =  '{ "title": "'.$TITLOS.'", "status":"pending" }';
 					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post  '.$restapipoint.' -d '."'".$data_json."'";
 
 					$exec .= " | jq '.id' 2>&1";
