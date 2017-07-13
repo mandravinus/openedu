@@ -47,6 +47,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
    $restapi = $diy_restapi();
    $restapitmp = $restapi['restapi'];
    $restapipoint = $restapi['endpoint'];
+   $restapipoint2 = $restapi['endpoint2'];
     try {
  		$g = 'INSERT INTO dataellak ( "onoma", "epitheto", "email", "eidikotita", "ergastirio", "ergastirioonoma", "ergastiriodrastiriotita", "ergastirioperigrafi", "ergastirioypefthinos", "ergastiriourl", "meta", "metatitlos", "idrima", "sxolh" ) VALUES ( :onoma, :epitheto, :email, :eidikotita, :ergastirio, :ergastirioonoma, :ergastiriodrastiriotita, :ergastirioperigrafi, :ergastirioypefthinos, :ergastiriourl, :meta, :metatitlos, :idrima, :sxolh)';
 		$tmp = $data['eidikotita'];
@@ -119,7 +120,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 					exec($exec, $output, $return_var);
 					$fields1['fields']=$fields;
 					$content1 = json_encode($fields1);
-					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post  '.$restapipoint.'/${'.$output[0].'} -d '."'".$content1."'";
+					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post  '.$restapipoint2.'/${'.$output[0].'} -d '."'".$content1."'";
 
 					$exec .= " | jq '.id' 2>&1";
 					$contentellakm='';
