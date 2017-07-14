@@ -3,6 +3,7 @@
 //var API = "http://127.0.0.1/";   
 //indexconfig.js
 $(document).ready(function() {
+    $("#opendata").attr("href", OPENDATA);
     $('#el-idrima').attr("disabled", true);
     $('#el-sxolh').attr("disabled", true);
     $('#el-ereunitiko').attr("disabled", true);
