@@ -331,8 +331,8 @@ $(document).on('click', '.del_field_button_url', function(){
 
 $(document).on('click', '.del_field_button', function(){ 
     	var del = $(".del_field_button"); //Fields wrapper
-	//$(this).parent().parent().remove();
-        $("#eltmhmalession").empty();	
+	$(this).parent().parent().remove();
+        //$("#eltmhmalession").empty();	
 });
 
 $(document).on('click', '#submit', function(){ 
