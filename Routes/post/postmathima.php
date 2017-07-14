@@ -138,7 +138,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 	//$data_json =  '{ "title": "Ερωτηματολόγιο για το ανοιχτό λογισμικό", "content": "'.$content.'", "status":"publish" }';
 	//$exec = 'curl --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X post -k  -i '.$restapipoint.' -d '."'".$data_json."'";
 	//exec($exec);
-        $result["result"]=  $q;
+        //$result["result"]=  $q;
         //$result["dget"]=  $dget;
         //$result["dgettmp"]=  $content1;
         //$result["dgettmp1"]=  $exec;
