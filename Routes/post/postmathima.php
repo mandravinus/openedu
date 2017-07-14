@@ -127,6 +127,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 					$contentellakm='';
 					$contentellakt='';
 					$contentellaku='';
+					$output='';
 					$stmt1->execute();
 					$ii = $ii + 2;
 				}
