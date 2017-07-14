@@ -120,7 +120,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 					exec($exec, $output, $return_var);
 					$fields1['fields']=$fields;
 					$content1 = json_encode($fields1);
-					$exec1 = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X POST  '.$restapipoint2.'/${'.$output[0].'} -d '."'".$content1."'";
+					$exec1 = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X POST  '.$restapipoint2.'/'.$output[0].' -d '."'".$content1."'";
 
 					$exec1 .= " 2>&1";
 					exec($exec1, $output1, $return_var1);
