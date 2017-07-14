@@ -336,6 +336,7 @@ $(document).on('click', '.del_field_button', function(){
 });
 
 $(document).on('click', '#submit', function(){ 
+    $('#submit').prop('disabled', true);
     var newselect = $("#newselect option").filter(":selected").text();
     var onoma = $("#el-onoma").val();
     var epitheto = $("#el-epitheto").val();
