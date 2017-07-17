@@ -139,7 +139,7 @@ tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 
-tmimaselecturlmeta ='<label class="bg-info eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-meta">Τμήμα </label>';
+tmimaselecturlmeta ='<div class="eltimagroupmeta"><label class="bg-info eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-meta">Τμήμα </label>';
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="meta" placeholder="Tμήμα" type="text">';
 tmimaselecturlmeta +='</div>';
@@ -162,9 +162,10 @@ tmimaselecturlmeta +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbs
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
+tmimaselecturlmeta +='</div>';
 
 
-tmimaselecturlmeta1 ='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metamathima">Μάθημα </label>';
+tmimaselecturlmeta1 ='<div class="eltimagroupmeta1"><label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metamathima">Μάθημα </label>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" type="text">';
 tmimaselecturlmeta1 +='</div>';
@@ -176,6 +177,7 @@ tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalessonurl" val
 tmimaselecturlmeta1 +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
 tmimaselecturlmeta1 +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
+tmimaselecturlmeta1 +='</div>';
 tmimaselecturlmeta1 +='</div>';
 tmimaselecturlmeta1 +='</div>';
 tmimaselecturlmeta1 +='</div>';
@@ -332,7 +334,6 @@ $(document).on('click', '.del_field_button_url', function(){
 $(document).on('click', '.del_field_button', function(){ 
     	var del = $(".del_field_button"); //Fields wrapper
 	$(this).parent().parent().remove();
-        //$("#eltmhmalession").empty();	
 });
 
 $(document).on('click', '#submit', function(){ 
