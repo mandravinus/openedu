@@ -1,3 +1,3 @@
 var DATA;
-var API = "http://127.0.0.1/";
-var OPENDATA = "http://127.0.0.1/view/kapoiolink.html";
+var API = "http://example.com/";
+var OPENDATA = "http://example.com/view/opendata.html";

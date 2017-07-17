@@ -1,2 +1,2 @@
 <?php
-$projectDir = '/var/www/aeitei';
+$projectDir = '/var/www/example.com';

@@ -1,5 +1,5 @@
 <?php
-$base64Pass="YWRtaW46U1VhSCB3NFBsIFhadVcgeTBFNyBpNjFaIFhxQ0Y=";
-$endpoint="http://wp/wp-json/wp/v2/posts";
-$endpoint2="http://wp/wp-json/wp/v2/posts2";
+$base64Pass="ThEbAsE64pAsSwOrD==";
+$endpoint="http://example.com/wp-json/wp/v2/custom_post_type";
+$endpoint2="http://example.com/wp-json/acf/v2/post";
 
