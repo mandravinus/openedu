@@ -13,6 +13,14 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<style media="screen" type="text/css">
+label.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: red;
+}
+</style>
+
 <link href="/img/favicon.ico" rel="icon">
 </head>
 <body class="">
@@ -72,7 +80,7 @@
 </style>
 <div id="app-form">
 <h1> </h1>
-<form id="tableresponsive1" class="form-horizontal" data-messages="[]" data-is-valid="1" action="" method="post">
+<form role="form" id="tableresponsive1" class="form-horizontal" data-messages="[]" data-is-valid="1"  action="" method="post">
 <div class="form-group">
 <br>
 <h1>Ερωτηματολόγιο για το ανοιχτό λογισμικό</h1>
@@ -153,7 +161,7 @@
 
 
 <div id="eltmhmalessionadd" class="form-group text-center">
-<button id="submit" class="btn btn-lg btn-primary" type="button" name="submit">Υποβολή</button>
+<button id="submit" class="btn btn-lg btn-primary" type="submit" name="submit">Υποβολή</button>
 </div>
 </fieldset>
 </div>
@@ -185,6 +193,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js" integrity="sha256-UiqIqgNXwR8ChFMaD8VrY0tBUIl/soqb7msaauJWZVc=" crossorigin="anonymous"></script>
 <script src="indexconfig.js">
 </script>
 <script src="index-1.1.js">
