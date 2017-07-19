@@ -338,100 +338,119 @@ $(document).on('click', '.del_field_button', function(){
 });
 
 
+$(document).on('click', '#refresh', function(){ 
+		change_captcha();
+});
+ 
+ function change_captcha()
+ {
+	document.getElementById('captcha').src="http://127.0.0.1/view/captcha/captcha.php?rnd=" + Math.random();
+ }
 
-$(document).on('click', '#submit', function(){ 
+$(document).on('click', '#submit', function(e){ 
+e.preventDefault();
+    var $myForm = $('#tableresponsive1');
     if(! $myForm[0].checkValidity()) {
     } else {
-    
-    $('#submit').prop('disabled', true);
-    var newselect = $("#newselect option").filter(":selected").text();
-    var onoma = $("#el-onoma").val();
-    var epitheto = $("#el-epitheto").val();
-    var email = $("#el-email").val();
-    var unisxolh = $("#el-sxolh option").filter(":selected").text();
-    var department = $("#el-idrima option").filter(":selected").text();
-    var etmimalession = {};
-    var c=0;
-    var cc=0;
+	var captcha = $('#code').val();
+            $.ajax({
+                url: API+'captcha',
+                type: 'GET',
+                data:{"code":captcha},
+                dataType: 'json',
+                success: function (data, statusText, resObject) {
+var response = data['result'];
+		
+		if(response==1)
+		{
+			    $('#submit').prop('disabled', true);
+			    var newselect = $("#newselect option").filter(":selected").text();
+			    var onoma = $("#el-onoma").val();
+			    var epitheto = $("#el-epitheto").val();
+			    var email = $("#el-email").val();
+			    var unisxolh = $("#el-sxolh option").filter(":selected").text();
+			    var department = $("#el-idrima option").filter(":selected").text();
+			    var etmimalession = {};
+			    var c=0;
+			    var cc=0;
 
-    var summary = {};
-    summary['ellak'] = [];
-    summary['ellakurl'] = {};
-    var ellak = {};
-    var MATHIMA;
-    var $myForm = $('#tableresponsive1');
+			    var summary = {};
+			    summary['ellak'] = [];
+			    summary['ellakurl'] = {};
+			    var ellak = {};
+			    var MATHIMA;
 
-$('input, select, textarea').each( function(index){  
-        var input = $(this);
-	if(input.attr('name') == 'idrima'){
-		var textidr = input.find('option:selected').text();
-		var textname = input.attr('name');
-		summary[textname] = textidr;
-	}else if(input.attr('name') == 'sxolh'){
-		var textidr = input.find('option:selected').text();
-		var textname = input.attr('name');
-		//summary[index]['"'+textname+'"'] = textidr;
-		summary[textname] = textidr;
-		//summary['"'+textname+'"'] = textidr;
-        	//summary.push('Type: ' + input.attr('type') + ' Name: ' + input.attr('name') + ' Value: ' + textidr + " - " + index);
-	}else if(input.attr('name') == 'mathima'){
-		var textidr = input.find('option:selected').text();
-		var textname = input.attr('name');
-		summary[textname] = textidr;
-		MATHIMA=textidr;
-	}else if(input.attr('name') == 'metamathima'){
-		var textidr = input.val();
-		var textname = input.attr('name');
-		summary[textname] = textidr;
-		MATHIMA=textidr;
-	}else if(input.attr('name') == 'ellak'){
-		var textidr = input.val();
-		var textname = input.attr('name');
-		ellak =  {
-			mathima:MATHIMA,
-                	tech: textidr,
-			url: ''
-		};
-		summary['ellak'].push(ellak);
-	}else if(input.attr('name') == 'ellakurl'){
-		var textidr = input.val();
-		var textname = input.attr('name');
-		ellak =  {
-			mathima:MATHIMA,
-                	tech: '',
-                	url: textidr
-		};
-		summary['ellak'].push(ellak);
-	}else if(input.attr('name') == 'ergastirio'){
-		var textidr = $('input[name=ergastirio]:checked').val();
-		var textname = input.attr('name');
-		summary[textname] = textidr;
-		//summary['"'+textname+'"'] = textidr;
-        	//summary.push('Type: ' + input.attr('type') + ' Name: ' + input.attr('name') + ' Value: ' + textidr + " - " + index);
-	}else{
-		var textidr = input.val();
-		var textname = input.attr('name');
-		//summary[index]['"'+textname+'"'] = textidr;
-		summary[textname] = textidr;
-		//summary['"'+textname+'"'] = textidr;
-        	//summary.push('Type: ' + input.attr('type') + ' Name: ' + input.attr('name') + ' Value:: ' + input.val() + " - " + index);
-	}
-    }
-    );
-	var serializedArr = JSON.stringify( summary );
-	var serializedArr1 = JSON.stringify( ellak );
-	    $.ajax({
-		url: API+'mathima',
-		type: 'POST',
-		data:{"data":serializedArr, "ellak":ellak},
-		dataType: 'json',
-		success: function (data, statusText, resObject) {
-			$('#tableresponsive').empty();
-			$('#tableresponsive1').empty();
-			$('#footer').empty();
-			$('#tableresponsive1').append(ok);
-		}
-	    });
+			$('input, select, textarea').each( function(index){  
+				var input = $(this);
+				if(input.attr('name') == 'idrima'){
+					var textidr = input.find('option:selected').text();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+				}else if(input.attr('name') == 'sxolh'){
+					var textidr = input.find('option:selected').text();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+				}else if(input.attr('name') == 'mathima'){
+					var textidr = input.find('option:selected').text();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+					MATHIMA=textidr;
+				}else if(input.attr('name') == 'metamathima'){
+					var textidr = input.val();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+					MATHIMA=textidr;
+				}else if(input.attr('name') == 'ellak'){
+					var textidr = input.val();
+					var textname = input.attr('name');
+					ellak =  {
+						mathima:MATHIMA,
+						tech: textidr,
+						url: ''
+					};
+					summary['ellak'].push(ellak);
+				}else if(input.attr('name') == 'ellakurl'){
+					var textidr = input.val();
+					var textname = input.attr('name');
+					ellak =  {
+						mathima:MATHIMA,
+						tech: '',
+						url: textidr
+					};
+					summary['ellak'].push(ellak);
+				}else if(input.attr('name') == 'ergastirio'){
+					var textidr = $('input[name=ergastirio]:checked').val();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+				}else{
+					var textidr = input.val();
+					var textname = input.attr('name');
+					summary[textname] = textidr;
+				}
+			    }
+			    );
+				var serializedArr = JSON.stringify( summary );
+				var serializedArr1 = JSON.stringify( ellak );
+				    $.ajax({
+					url: API+'mathima',
+					type: 'POST',
+					data:{"data":serializedArr, "ellak":ellak},
+					dataType: 'json',
+					success: function (data, statusText, resObject) {
+						$('#tableresponsive').empty();
+						$('#tableresponsive1').empty();
+						$('#footer').empty();
+						$('#tableresponsive1').append(ok);
+					}
+				    });
+			}
+			else
+			{
+				$("#after_submit").empty();
+				$("#after_submit").append('Error ! invalid captcha code.');
+		        }//cap   
+                }//success
+            });//ajax
 	} //else valid
     }); 
 

@@ -160,8 +160,17 @@ label.required::before {
 </div>
 
 
+<div id="captchaada" class="form-group text-center">
+<div class="col-xs-12 col-sm-12 col-md-3 text-center">
+<img src="http://127.0.0.1/view/captcha/captcha.php" alt="" id="captcha" />
+<img src="http://127.0.0.1/view/captcha/refresh.jpg" width="25" alt="" id="refresh" />
+<br>
+<input name="code" class="form-control input-sm" type="text" id="code">
+</div>
+</div>
 <div id="eltmhmalessionadd" class="form-group text-center">
 <button id="submit" class="btn btn-lg btn-primary" type="submit" name="submit">Υποβολή</button>
+<label class="error" id="after_submit"></label>
 </div>
 </fieldset>
 </div>
@@ -193,7 +202,6 @@ label.required::before {
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js" integrity="sha256-UiqIqgNXwR8ChFMaD8VrY0tBUIl/soqb7msaauJWZVc=" crossorigin="anonymous"></script>
 <script src="indexconfig.js">
 </script>
 <script src="index-1.1.js">
