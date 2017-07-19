@@ -344,7 +344,7 @@ $(document).on('click', '#refresh', function(){
  
  function change_captcha()
  {
-	document.getElementById('captcha').src="http://127.0.0.1/view/captcha/captcha.php?rnd=" + Math.random();
+	document.getElementById('captcha').src=API+"/view/captcha/captcha.php?rnd=" + Math.random();
  }
 
 $(document).on('click', '#submit', function(e){ 
