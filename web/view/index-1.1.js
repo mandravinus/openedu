@@ -346,9 +346,9 @@ $(document).on('click', '#refresh', function(){
  {
 	document.getElementById('captcha').src=API+"/view/captcha/captcha.php?rnd=" + Math.random();
  }
-
+$('form').submit(function(e){ e.preventDefault(); });
 $(document).on('click', '#submit', function(e){ 
-e.preventDefault();
+//e.preventDefault();
     var $myForm = $('#tableresponsive1');
     if(! $myForm[0].checkValidity()) {
     } else {
