@@ -44,8 +44,8 @@ $app->get('/captcha', function($request, $response) use ($diy_storage){
 
         $result["result"]=  $q;
         $result["status"] = "200";
-        $result["status1"] = $_SESSION['random_number'];
-        $result["status2"] = $code;
+        //$result["status1"] = $_SESSION['random_number'];
+        //$result["status2"] = $code;
         $result["message"] = "NoErrors";
      $response->withHeader('Content-Type', 'application/json;charset=utf-8');
      $response->getBody()->write( toGreek( json_encode( $result ) ) );
