@@ -36,9 +36,10 @@ $app->get('/mathima', function($request, $response) use ($diy_storage){
      
         $stmt = $storage->prepare($g);
         $stmt->execute();
-	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	//$row = $stmt->fetch(PDO::FETCH_ASSOC);
         $nr=0;
-                foreach ($stmt as $row) {
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                //foreach ($stmt as $row) {
                         //$q["data"][$nr]["id"]= $row[$nr];
                         $q["data"][$nr]["id"]= $row["minedu_id"];
                         $q["data"][$nr]["department"]= $row["department"];
