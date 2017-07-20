@@ -19,9 +19,10 @@ $app->get('/uni', function($request, $response) use ($diy_storage){
 	//$g =" SELECT a.* FROM data AS a WHERE a.minedu_id <> ( SELECT b.minedu_id FROM data AS b where a.institution <> b.institution ) group by a.minedu_id";
         $stmt = $storage->prepare($g);
         $stmt->execute();
-	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	//$row = $stmt->fetch(PDO::FETCH_ASSOC);
         $nr=0;
-                foreach ($stmt as $row) {
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                //foreach ($stmt as $row) {
                         $q["data"][$nr]["id"]= $row["minedu_id"];
                         $q["data"][$nr]["name"]= $row["institution"];
                         $nr++;
