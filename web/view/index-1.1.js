@@ -75,8 +75,7 @@ $('#el-idrima').on('change', function () {
 		$('#add_field_button').remove();
 		$('#eltmhmalessionadd').prepend(tmimaselect1);
 		//$('#add_field_button').remove();
-	}
-	if(unitmp == 'e'){
+	}else if(unitmp == 'e'){
 		$('#eltmhmalession').empty();
 		$('#eltmhmalession').append(tmimaselecturl);
 		$('#add_field_button').remove();
