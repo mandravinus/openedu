@@ -47,7 +47,7 @@ $('#newselect').on('change', function () {
 		$('#el-sxolh').empty();
 		$('#eltmhmalession').empty();
 		$('#el-idrima').append($("<option></option>")
-				                    .attr("value", '1')
+				                    .attr("value", '')
 				                    .text('Ίδρυμα'));
        		$.each(data.result.data, function(index, d){            
 
@@ -96,7 +96,7 @@ $('#el-idrima').on('change', function () {
 			$('#el-sxolh').prop("disabled", false); 
 			$('#el-sxolh').empty();
 			$('#eltmhmalession').empty();
-			$('#el-sxolh').append($("<option></option>").attr("value", '1').text('Σχολή'));
+			$('#el-sxolh').append($("<option></option>").attr("value", '').text('Σχολή'));
 			$.each(data.result.data, function(index, d){            
 				$('#el-sxolh').append($("<option></option>")
 						    .attr("value", d.id)
@@ -108,9 +108,9 @@ $('#el-idrima').on('change', function () {
 });
 
 var tmimaselect = '<div class="eltimagroup">';
-tmimaselect +='<label class="bg-info control-label hidden-xs hidden-sm col-md-3" for="el-mathima">Μάθημα</label>';
+tmimaselect +='<label class="bg-info control-label hidden-xs hidden-sm col-md-3 required" for="el-mathima">Μάθημα</label>';
 tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
-tmimaselect +='<select class="form-control input-sm eltmima" data-placeholder="Τμήμα" name="mathima">';
+tmimaselect +='<select class="form-control input-sm eltmima" data-placeholder="Τμήμα" required name="mathima">';
 tmimaselect +='<option selected=""  value="">Μάθημα</option>';
 tmimaselect +='<option value="1"></option>';
 tmimaselect +='</select>';
@@ -119,7 +119,7 @@ tmimaselect +='</div>';
 tmimaselect +='<label class="control-label required hidden-xs hidden-sm col-md-3" for="el-mathimatechnologia">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselect +='<div class="col-xs-12 col-sm-12 col-md-9">';
 tmimaselect +='<input class="form-control input-sm eltmimalesson" required value="" name="ellak" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" required name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
+tmimaselect +='<input class="form-control input-sm eltmimalessonurl" value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
 
 tmimaselect +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
 tmimaselect +='<button class="add_field_button_url pull-right" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
@@ -131,7 +131,7 @@ tmimaselect +='</div>';
 tmimaselecturl ='<label class="eltmimalessonurl control-label required hidden-xs hidden-sm col-md-3" for="el-mathimatechnologia">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselecturl +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturl +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" required value="" name="ellak" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-tmimaselecturl +='<input class="form-control input-sm eltmimalessonurl" required value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
+tmimaselecturl +='<input class="form-control input-sm eltmimalessonurl" value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
 tmimaselecturl +='<button class="del_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Διαγραφή τεχνολογίας</button>';
 tmimaselecturl +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselecturl +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
@@ -147,15 +147,15 @@ tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hid
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metatitlos" placeholder="Όνομα μεταπτυχιακού προγράματος" type="text">';
 tmimaselecturlmeta +='</div>';
-tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metamathima">Μάθημα </label>';
+tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα </label>';
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
-tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" type="text">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" required placeholder="Μάθημα" type="text">';
 tmimaselecturlmeta +='</div>';
 
 tmimaselecturlmeta +='<label class="eltmimalessonurl control-label required hidden-xs hidden-sm col-md-3" for="el-metatechnologia">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" required  value="" name="ellak" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-tmimaselecturlmeta +='<input class="form-control input-sm eltmimalessonurl" required value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalessonurl" value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
 tmimaselecturlmeta +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
 tmimaselecturlmeta +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselecturlmeta +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
@@ -165,15 +165,15 @@ tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
 
 
-tmimaselecturlmeta1 ='<div class="eltimagroupmeta1"><label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metamathima">Μάθημα </label>';
+tmimaselecturlmeta1 ='<div class="eltimagroupmeta1"><label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα</label>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
-tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" type="text">';
+tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" required type="text">';
 tmimaselecturlmeta1 +='</div>';
 
 tmimaselecturlmeta1 +='<label class="eltmimalessonurl control-label required hidden-xs hidden-sm col-md-3" for="el-metatechnologia">ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ </label>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" required value="" name="ellak" placeholder="ΑΝΟΙΧΤΗ ΤΕΧΝΟΛΟΓΙΑ/ΛΟΓΙΣΜΙΚΟ/ΠΕΡΙΕΧΟΜΕΝΟ" type="text">';
-tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalessonurl" required value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
+tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalessonurl" value="" name="ellakurl" placeholder="Πληκτρολογήστε το url της Ανοιχτής Τεχνολογίας/Λογισμικού/Περιεχομένου που χρησιμοποιείτε" type="text">';
 tmimaselecturlmeta1 +='<button class="del_field_button" type="button" style="color:blue">Διαγραφή μαθήματος</button>';
 tmimaselecturlmeta1 +='<button class="add_field_button_url pull-right eltmimalessonurl" type="button" style="color:blue;">Προσθήκη τεχνολογίας</button>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurl" style="margin-top:5px"> &nbsp; </div>';
