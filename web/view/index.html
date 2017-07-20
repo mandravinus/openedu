@@ -98,21 +98,21 @@ label.required::before {
 <fieldset>
 
 <div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-onoma">Ονομα</label>
+<label class="control-label hidden-xs hidden-sm col-md-3 required" for="el-onoma">Ονομα</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-onoma" class="form-control input-sm" type="text" value="" name="onoma" placeholder="Ονομα">
+<input id="el-onoma" class="form-control input-sm" type="text" required value="" name="onoma" placeholder="Ονομα">
 </div>
 </div>
 <div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-eponimo">Επώνυμο</label>
+<label class="control-label hidden-xs hidden-sm col-md-3 required" for="el-eponimo">Επώνυμο</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-epitheto" class="form-control input-sm" type="text" value="" name="epitheto" placeholder="Επώνυμο">
+<input id="el-epitheto" class="form-control input-sm" type="text" required value="" name="epitheto" placeholder="Επώνυμο">
 </div>
 </div>
 <div class="form-group">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-email">Email</label>
+<label class="control-label hidden-xs hidden-sm col-md-3 required" for="el-email">Email</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<input id="el-email" class="form-control input-sm" type="text" value="" name="email" placeholder="Email">
+<input id="el-email" class="form-control input-sm" type="text" required value="" name="email" placeholder="Email">
 </div>
 </div>
 
@@ -121,10 +121,10 @@ label.required::before {
 
 <div id="items-list">
 <div class="form-group">
-<label class="control-label col-md-3" for="newselect">Επιλέξτε την ιδιότητά σας</label>
+<label class="control-label col-md-3 required" for="newselect">Επιλέξτε την ιδιότητά σας</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<select id="newselect" class="form-control" name="eidikotita">
-<option id="space" selected="" value="space"></option>
+<select id="newselect" class="form-control" required name="eidikotita">
+<option id="space" selected="" value=""></option>
 <option id="idrimata" value="didaktiko">Διδακτικό Ερευνητικό Προσωπικό</option>
 <option id="idrimata1" value="ergastiriako">Εργαστηριακό Προσωπικό -Βοηθοί και Επιστημονικοί Συνεργάτες</option>
 <option id="idrimata2" value="dioikitiko">Διοικητικό Προσωπικό</option>
@@ -140,17 +140,17 @@ label.required::before {
 
 <div id="first" style="display: block;">
 <div class="form-group ">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-idrima">Ίδρυμα</label>
+<label class="control-label hidden-xs hidden-sm col-md-3 required" for="el-idrima">Ίδρυμα</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<select id="el-idrima" class="form-control input-sm" data-placeholder="Ίδρυμα" name="idrima">
+<select id="el-idrima" class="form-control input-sm" required data-placeholder="Ίδρυμα" name="idrima">
 <option selected="" disabled="" value="">Ίδρυμα</option>
 </select>
 </div>
 </div>
 <div class="form-group ">
-<label class="control-label hidden-xs hidden-sm col-md-3" for="el-sxolh">Σχολή</label>
+<label class="control-label hidden-xs hidden-sm col-md-3 required" for="el-sxolh">Σχολή</label>
 <div class="col-xs-12 col-sm-12 col-md-9">
-<select id="el-sxolh" class="form-control input-sm" data-placeholder="Σχολή" name="sxolh">
+<select id="el-sxolh" class="form-control input-sm" required data-placeholder="Σχολή" name="sxolh">
 <option selected="" disabled="" value="">Σχολή</option>
 <option value="1"></option>
 </select>
@@ -166,8 +166,8 @@ label.required::before {
 <div id="eltmhmalessionadd1" class="form-group text-center">
    <div id="captchaada" class="form-group text-center">
 	<div class="col-xs-12 col-sm-12 col-md-0 text-center">
-		<img src="http://127.0.0.1/view/captcha/captcha.php" alt="" id="captcha" />
-		<img src="http://127.0.0.1/view/captcha/refresh.jpg" width="25" alt="" id="refresh" />
+		<img src="/view/captcha/captcha.php" alt="" id="captcha" />
+		<img src="/view/captcha/refresh.jpg" width="25" alt="" id="refresh" />
 	</div>
 		<br>
 	<div class="col-lg-4 col-lg-offset-4">
