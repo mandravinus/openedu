@@ -7,4 +7,8 @@ $endpoint2="http://example.com/wp-json/acf/v2/post";
  $M_PWD="";
  $M_HOST="localhost";
  $M_PORT="25";
+ $M_PORT="25";
+ $M_FROM = "";
+ $M_NAME = "";
+ $M_SUBJECT = "
 
