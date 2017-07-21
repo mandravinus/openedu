@@ -69,11 +69,11 @@ $('#el-idrima').on('change', function () {
 		$('#eltmhmalession').append(tmimaselecturl);
 		$('#add_field_button').remove();
 		$('.del_field_button_url').remove();
-	}else if(NEWSELECT == 'meta'){
-		$('#eltmhmalession').empty();
-		$('#eltmhmalession').append(tmimaselecturlmeta);
-		$('#add_field_button').remove();
-		$('#eltmhmalessionadd').prepend(tmimaselect1);
+	//}else if(NEWSELECT == 'meta'){
+		//$('#eltmhmalession').empty();
+		//$('#eltmhmalession').append(tmimaselecturlmeta);
+		//$('#add_field_button').remove();
+		//$('#eltmhmalessionadd').prepend(tmimaselect1);
 		//$('#add_field_button').remove();
 	}else if(unitmp == 'e'){
 		$('#eltmhmalession').empty();
@@ -251,7 +251,6 @@ $('#el-sxolh').on('change', function () {
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
     var department = $("#el-idrima option").filter(":selected").text();
     if(NEWSELECT == 'dioikitiko'){
-    }else if(NEWSELECT == 'meta'){
     }else{
 	    $.ajax({
 		url: API+'mathima',
@@ -259,16 +258,23 @@ $('#el-sxolh').on('change', function () {
 		data:{"institution":department,"unisxolh":unisxolh},
 		dataType: 'json',
 		success: function (data, statusText, resObject) {
-			$('#eltmhmalession').empty();
-			$('#eltmhmalession').append(tmimaselect);
-			$('#add_field_button').remove();
-			$('#eltmhmalessionadd').prepend(tmimaselect1);
-			var selectlesson = $('#eltmhmalession').find("select:last");
-			$.each(data.result.data, function(index, d){
-				selectlesson.append($("<option></option>")
-						    .attr("value", d.id)
-						    .text(d.lesson));
-			});
+			if(NEWSELECT == 'meta'){
+				$('#eltmhmalession').empty();
+				$('#eltmhmalession').append(tmimaselecturlmeta);
+				$('#add_field_button').remove();
+				$('#eltmhmalessionadd').prepend(tmimaselect1);
+			}else{
+				$('#eltmhmalession').empty();
+				$('#eltmhmalession').append(tmimaselect);
+				$('#add_field_button').remove();
+				$('#eltmhmalessionadd').prepend(tmimaselect1);
+				var selectlesson = $('#eltmhmalession').find("select:last");
+				$.each(data.result.data, function(index, d){
+					selectlesson.append($("<option></option>")
+							    .attr("value", d.id)
+							    .text(d.lesson));
+				});
+			}
 		}
 	    });
     }
