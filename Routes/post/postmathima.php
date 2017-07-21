@@ -77,6 +77,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		$fields['edu_quest_lab_website']= $dget["ergastiriourl"];
 		$fields['edu_quest_institution']=$dget["idrima"];
 		$fields['edu_quest_department']=$dget["sxolh"];
+		$fields['edu_quest_graduate_title']=$dget["metatitlos"];
 
         	$stmt->execute();
 
