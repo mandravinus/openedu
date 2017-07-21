@@ -95,7 +95,7 @@ $('#el-idrima').on('change', function () {
 			$('#el-sxolh').prop("disabled", false); 
 			$('#el-sxolh').empty();
 			$('#eltmhmalession').empty();
-			$('#el-sxolh').append($("<option></option>").attr("value", '').text('Σχολή'));
+			$('#el-sxolh').append($("<option></option>").attr("value", '').text('Τμήμα'));
 			$.each(data.result.data, function(index, d){            
 				$('#el-sxolh').append($("<option></option>")
 						    .attr("value", d.id)
@@ -138,13 +138,10 @@ tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 
-tmimaselecturlmeta ='<div class="eltimagroupmeta"><label class="bg-info eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-meta">Τμήμα </label>';
+tmimaselecturlmeta ='<div class="eltimagroupmeta">';
+tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metatitlos">Τίτλος μεταπτυχιακού </label>';
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
-tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="meta" placeholder="Tμήμα" type="text">';
-tmimaselecturlmeta +='</div>';
-tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3" for="el-metatitlos">Τίτλος μεταπτυχιακού </label>';
-tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
-tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metatitlos" placeholder="Όνομα μεταπτυχιακού προγράματος" type="text">';
+tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metatitlos" placeholder="Όνομα μεταπτυχιακού προγράματος" type="text" required>';
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα </label>';
 tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
