@@ -6,6 +6,26 @@
 $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_restapi){
 
 
+        function smtpmailer($to, $from, $from_name, $subject, $body, $M_HOST, $M_PORT) {
+                global $error;
+                $mail = new PHPMailer(); // create a new object
+                $mail->IsSMTP(); // enable SMTP
+                $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
+                $mail->Host = $M_HOST;
+                $mail->Port = $M_PORT;
+                $mail->SetFrom($from, $from_name);
+                $mail->Subject = $subject;
+                $mail->Body = $body;
+                $mail->AddAddress($to);
+                if(!$mail->Send()) {
+                        $error = 'Mail error: '.$mail->ErrorInfo;
+                        return false;
+                } else {
+                        $error = 'Message sent!';
+                        return true;
+                }
+        }
+
 
     global $app;
     $result["controller"] = __FUNCTION__;
@@ -48,6 +68,13 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
    $restapitmp = $restapi['restapi'];
    $restapipoint = $restapi['endpoint'];
    $restapipoint2 = $restapi['endpoint2'];
+
+   $M_HOST= $restapi['m_host'];
+   $M_PORT= $restapi['m_port'];
+   $M_FROM = $restapi['m_from'];
+   $M_NAME  = $restapi['m_name'];
+   $M_SUBJECT = $restapi['m_subject'];
+   
     try {
  		$g = 'INSERT INTO dataellak ( "onoma", "epitheto", "email", "eidikotita", "ergastirio", "ergastirioonoma", "ergastiriodrastiriotita", "ergastirioperigrafi", "ergastirioypefthinos", "ergastiriourl", "meta", "metatitlos", "idrima", "sxolh" ) VALUES ( :onoma, :epitheto, :email, :eidikotita, :ergastirio, :ergastirioonoma, :ergastiriodrastiriotita, :ergastirioperigrafi, :ergastirioypefthinos, :ergastiriourl, :meta, :metatitlos, :idrima, :sxolh)';
 		$tmp = $data['eidikotita'];
@@ -135,6 +162,12 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 				}
 			}
 	$content = json_encode($fields);
+	$body = json_encode($fields);
+	$to = $dget["email"];
+	$from = $M_FROM;
+	$from_name = $M_NAME;
+	$subject = $M_SUBJECT;
+	smtpmailer($to, $from, $from_name, $subject, $body, $M_HOST, $M_PORT);
 
 	//result_messages===============================================================      
         //$result["result"]=  $q;

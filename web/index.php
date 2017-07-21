@@ -18,6 +18,7 @@ class diyConfig
 }
 
 require 'indexconfig.php';
+require $projectDir.'/vendor/PHPMailer-master/PHPMailerAutoload.php';
 require $projectDir.'/restapi/file.php';
 //$projectDir = '/var/www/aeitei';   //define the directory containing the project files
 
@@ -33,6 +34,12 @@ diyConfig::write('db.password', '');
 diyConfig::write('restapi', $base64Pass);
 diyConfig::write('endpoint', $endpoint);
 diyConfig::write('endpoint2', $endpoint2);
+
+diyConfig::write('m_host', $M_HOST);
+diyConfig::write('m_port', $M_PORT);
+diyConfig::write('m_from', $M_FROM);
+diyConfig::write('m_name', $M_NAME);
+diyConfig::write('m_subject', $M_SUBJECT);
 //=========================  REQUIRE ==================================
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -82,6 +89,11 @@ $diy_restapi = function()
 	$restapi['restapi'] = diyConfig::read('restapi');
 	$restapi['endpoint'] = diyConfig::read('endpoint');
 	$restapi['endpoint2'] = diyConfig::read('endpoint2');
+	$restapi['m_host'] = diyConfig::read('m_host');
+	$restapi['m_port'] = diyConfig::read('m_port');
+	$restapi['m_from'] = diyConfig::read('m_from');
+	$restapi['m_name'] = diyConfig::read('m_name');
+	$restapi['m_subject'] = diyConfig::read('m_subject');
 	return $restapi;
 };
 

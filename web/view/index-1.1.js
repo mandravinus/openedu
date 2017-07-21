@@ -139,8 +139,8 @@ tmimaselecturl +='</div>';
 tmimaselecturl +='</div>';
 
 tmimaselecturlmeta ='<div class="eltimagroupmeta">';
-tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metatitlos">Τίτλος μεταπτυχιακού </label>';
-tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
+tmimaselecturlmeta +='<label class="eltmimalessonurl metalessonlabel control-label hidden-xs hidden-sm col-md-3 required" for="el-metatitlos">Τίτλος μεταπτυχιακού </label>';
+tmimaselecturlmeta +='<div class="eltmimalessonurldiv eltmimalessonurl metalessoninput col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metatitlos" placeholder="Όνομα μεταπτυχιακού προγράματος" type="text" required>';
 tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='<label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα </label>';
@@ -161,7 +161,7 @@ tmimaselecturlmeta +='</div>';
 tmimaselecturlmeta +='</div>';
 
 
-tmimaselecturlmeta1 ='<div class="eltimagroupmeta1"><label class="eltmimalessonurl control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα</label>';
+tmimaselecturlmeta1 ='<div class="eltimagroupmeta1"><label class="eltmimalessonurl  control-label hidden-xs hidden-sm col-md-3 required" for="el-metamathima">Μάθημα</label>';
 tmimaselecturlmeta1 +='<div class="eltmimalessonurldiv eltmimalessonurl col-xs-12 col-sm-12 col-md-9">';
 tmimaselecturlmeta1 +='<input class="form-control input-sm eltmimalesson eltmimalessonurl" value="" name="metamathima" placeholder="Μάθημα" required type="text">';
 tmimaselecturlmeta1 +='</div>';
@@ -305,6 +305,11 @@ $(document).on('click', '#add_field_button', function(){
     var unitmp = unival.substring(0,1);
     if(NEWSELECT == 'meta'){
     	$('#eltmhmalession').append(tmimaselecturlmeta);
+	var items = $('#eltmhmalession').find('.eltimagroupmeta').length;
+	if(items > 1){
+		$('#eltmhmalession').find('.eltimagroupmeta').last().find('.metalessonlabel').remove();	
+		$('#eltmhmalession').find('.eltimagroupmeta').last().find('.metalessoninput').remove();	
+	}
     }else if(unitmp == 'i'){
     	$('#eltmhmalession').append(tmimaselecturlmeta1);
     }else{
