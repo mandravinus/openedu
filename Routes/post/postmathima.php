@@ -70,6 +70,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		$fields['edu_quest_applicant_name']= $dget["onoma"];
 		$fields['edu_quest_applicant_surname']= $dget["epitheto"];
 		$fields['edu_quest_applicant_email']= $dget["email"];
+		$fields['edu_quest_applicant_position']= $dget["eidikotita"];
 		$fields['edu_quest_lab_name']=$dget["ergastirioonoma"];
 		$fields['edu_quest_lab_activity']= $dget["ergastiriodrastiriotita"];
 		$fields['edu_quest_lab_activity_description']= $dget["ergastirioperigrafi"];
