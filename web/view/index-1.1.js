@@ -80,11 +80,11 @@ $('#el-idrima').on('change', function () {
 		$('#eltmhmalession').append(tmimaselecturl);
 		$('#add_field_button').remove();
 		$('.del_field_button_url').remove();
-	}else if(unitmp == 'i'){
-		$('#eltmhmalession').empty();
-		$('#eltmhmalession').append(tmimaselecturlmeta1);
-		$('#add_field_button').remove();
-		$('#eltmhmalessionadd').prepend(tmimaselect1);
+	//}else if(unitmp == 'i'){
+		//$('#eltmhmalession').empty();
+		//$('#eltmhmalession').append(tmimaselecturlmeta1);
+		//$('#add_field_button').remove();
+		//$('#eltmhmalessionadd').prepend(tmimaselect1);
 	}else{
 	    $.ajax({
 		url: API+'department',
@@ -247,6 +247,9 @@ $('#el-sxolh').on('change', function () {
     var key = this.value;
     var unisxolh = $("#el-sxolh option").filter(":selected").text();
     var department = $("#el-idrima option").filter(":selected").text();
+    var uni = $("#el-idrima option").filter(":selected").text();
+    var unival = $("#el-idrima option").filter(":selected").val();
+    var unitmp = unival.substring(0,1);
     if(NEWSELECT == 'dioikitiko'){
     }else{
 	    $.ajax({
@@ -258,6 +261,11 @@ $('#el-sxolh').on('change', function () {
 			if(NEWSELECT == 'meta'){
 				$('#eltmhmalession').empty();
 				$('#eltmhmalession').append(tmimaselecturlmeta);
+				$('#add_field_button').remove();
+				$('#eltmhmalessionadd').prepend(tmimaselect1);
+			}else if (unitmp == 'i'){
+				$('#eltmhmalession').empty();
+				$('#eltmhmalession').append(tmimaselecturlmeta1);
 				$('#add_field_button').remove();
 				$('#eltmhmalessionadd').prepend(tmimaselect1);
 			}else{
