@@ -109,6 +109,19 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		$fields['edu_quest_department']=$dget["sxolh"];
 		$fields['edu_quest_graduate_title']=$dget["metatitlos"];
 
+		// Check and replace eidikotita vlaues with human friendly names
+		if($data['eidikotita'] == 'didaktiko'){
+			$mail_applicant_position = 'Διδακτικό Ερευνητικό Προσωπικό';
+		}elseif($data['eidikotita'] == 'fititis'){
+			$mail_applicant_position = 'Φοιτητής/τρια';
+		}elseif($data['eidikotita'] == 'ergastiriako'){
+			$mail_applicant_position = 'Εργαστηριακό Προσωπικό -Βοηθοί και Επιστημονικοί Συνεργάτες';
+		}elseif($data['eidikotita'] == 'meta'){
+			$mail_applicant_position = 'Μεταπτυχιακός φοιτητής';
+		}elseif($data['eidikotita'] == 'dioikitiko'){
+			$mail_applicant_position = 'Διοικητικό Προσωπικό';
+		}
+
 		// Create the body of the email before looping over the "ellak" array.
 		$body =  "Σας ευχαριστούμε για τη συμμετοχή σας, παρακάτω υπάρχουν τα στοιχεία που\n";
 		$body .= "καταχωρήσατε στο ερωτηματολόγιο.\n\n";
@@ -117,7 +130,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		$body .= "Όνομα: ................... {$fields['edu_quest_applicant_name']}\n";
 		$body .= "Επώνυμο: ................. {$fields['edu_quest_applicant_surname']}\n";
 		$body .= "Email: ................... {$fields['edu_quest_applicant_email']}\n";
-		$body .= "Ειδικότητα: .............. {$fields['edu_quest_applicant_position']}\n\n";
+		$body .= "Ειδικότητα: .............. $mail_applicant_position\n\n";
 		$body .= "Όνομα Εργαστηρίου: ....... {$fields['edu_quest_lab_name']}\n";
 		$body .= "Δραστηριότητα Εργαστηρίου: {$fields['edu_quest_lab_activity']}\n";
 		$body .= "Περιγραφή Εργαστηρίου: ... {$fields['edu_quest_lab_activity_description']}\n";
