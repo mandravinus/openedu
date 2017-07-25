@@ -14,6 +14,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
                 $mail->Host = $M_HOST;
                 $mail->Port = $M_PORT;
                 $mail->SMTPAutoTLS = $M_STARTTLS; // if true phpmailer will try connect via STARTTLS
+                $mail->CharSet = 'UTF-8';
                 $mail->SetFrom($from, $from_name);
                 $mail->Subject = $subject;
                 $mail->Body = $body;
@@ -108,6 +109,24 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		$fields['edu_quest_department']=$dget["sxolh"];
 		$fields['edu_quest_graduate_title']=$dget["metatitlos"];
 
+		// Create the body of the email before looping over the "ellak" array.
+		$body =  "Σας ευχαριστούμε για τη συμμετοχή σας, παρακάτω υπάρχουν τα στοιχεία που\n";
+		$body .= "καταχωρήσατε στο ερωτηματολόγιο.\n\n";
+		$body .= "Τα στοιχεία αυτά θα δημοσιευτούν σύντομα στο [1].\n";
+		$body .= "Στην ίδια σελίδα μπορείτε να δείτε όλα τα στοιχεία που έχουν καταχωρηθεί έως σήμερα.\n\n\n";
+		$body .= "Όνομα: ................... {$fields['edu_quest_applicant_name']}\n";
+		$body .= "Επώνυμο: ................. {$fields['edu_quest_applicant_surname']}\n";
+		$body .= "Email: ................... {$fields['edu_quest_applicant_email']}\n";
+		$body .= "Ειδικότητα: .............. {$fields['edu_quest_applicant_position']}\n\n";
+		$body .= "Όνομα Εργαστηρίου: ....... {$fields['edu_quest_lab_name']}\n";
+		$body .= "Δραστηριότητα Εργαστηρίου: {$fields['edu_quest_lab_activity']}\n";
+		$body .= "Περιγραφή Εργαστηρίου: ... {$fields['edu_quest_lab_activity_description']}\n";
+		$body .= "Υπεύθυνος Εργαστηρίου: ... {$fields['edu_quest_lab_head']}\n";
+		$body .= "Ιστοσελίδα Εργαστηρίου: .. {$fields['edu_quest_lab_website']}\n\n";
+		$body .= "Ίδρυμα: .................. {$fields['edu_quest_institution']}\n";
+		$body .= "Τμήμα: ................... {$fields['edu_quest_department']}\n";
+		$body .= "Τίτλος Μεταπτυχιακού: .... {$fields['edu_quest_graduate_title']}\n";
+
         	$stmt->execute();
 
         	$lastid = $storage->lastInsertId();
@@ -141,6 +160,12 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 					$fields['edu_quest_course']= $contentellakm;
 					$fields['edu_quest_software']= $contentellakt;
 					$fields['edu_quest_software_url']= $contentellaku;
+
+					// Add to the email body the course, sotfware and the software_url, within the loop.
+					$body .= "\nΜάθημα: .................. {$fields['edu_quest_course']}\n";
+					$body .=   "Ανοιχτή Τεχνολογία: ...... {$fields['edu_quest_software']}\n";
+					$body .=   "Ιστοσελίδα Τεχνολογίας: .. {$fields['edu_quest_software_url']}\n";
+
 					$TITLOS = $dget["email"];
 
 					$data_json =  '{ "title": "'.$TITLOS.'", "status":"pending" }';
@@ -163,11 +188,12 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 				}
 			}
 	$content = json_encode($fields);
-	$body = json_encode($fields);
 	$to = $dget["email"];
 	$from = $M_FROM;
 	$from_name = $M_NAME;
 	$subject = $M_SUBJECT;
+	// Add the footer to the email body.
+	$body .= "\n\n[1] - https://edu.ellak.gr/mitroo-anichton-technologion-stin-tritovathmia-ekpedefsi/";
 	smtpmailer($to, $from, $from_name, $subject, $body, $M_HOST, $M_PORT);
 
 	//result_messages===============================================================      
