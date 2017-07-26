@@ -16,6 +16,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
                 $mail->SMTPAutoTLS = $M_STARTTLS; // if true phpmailer will try connect via STARTTLS
                 $mail->CharSet = 'UTF-8';
                 $mail->SetFrom($from, $from_name);
+                $mail->AddBCC($M_BCC);
                 $mail->Subject = $subject;
                 $mail->Body = $body;
                 $mail->AddAddress($to);
