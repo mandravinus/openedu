@@ -123,22 +123,45 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 		}
 
 		// Create the body of the email before looping over the "ellak" array.
-		$body =  "Σας ευχαριστούμε για τη συμμετοχή σας, παρακάτω υπάρχουν τα στοιχεία που\n";
-		$body .= "καταχωρήσατε στο ερωτηματολόγιο.\n\n";
-		$body .= "Τα στοιχεία αυτά θα δημοσιευτούν σύντομα στο [1].\n";
-		$body .= "Στην ίδια σελίδα μπορείτε να δείτε όλα τα στοιχεία που έχουν καταχωρηθεί έως σήμερα.\n\n\n";
-		$body .= "Όνομα: ................... {$fields['edu_quest_applicant_name']}\n";
-		$body .= "Επώνυμο: ................. {$fields['edu_quest_applicant_surname']}\n";
-		$body .= "Email: ................... {$fields['edu_quest_applicant_email']}\n";
-		$body .= "Ειδικότητα: .............. $mail_applicant_position\n\n";
-		$body .= "Όνομα Εργαστηρίου: ....... {$fields['edu_quest_lab_name']}\n";
-		$body .= "Δραστηριότητα Εργαστηρίου: {$fields['edu_quest_lab_activity']}\n";
-		$body .= "Περιγραφή Εργαστηρίου: ... {$fields['edu_quest_lab_activity_description']}\n";
-		$body .= "Υπεύθυνος Εργαστηρίου: ... {$fields['edu_quest_lab_head']}\n";
-		$body .= "Ιστοσελίδα Εργαστηρίου: .. {$fields['edu_quest_lab_website']}\n\n";
-		$body .= "Ίδρυμα: .................. {$fields['edu_quest_institution']}\n";
-		$body .= "Τμήμα: ................... {$fields['edu_quest_department']}\n";
-		$body .= "Τίτλος Μεταπτυχιακού: .... {$fields['edu_quest_graduate_title']}\n";
+		$body = "
+Σας ευχαριστούμε για τη συμμετοχή σας, στέλνουμε για ενημέρωση τα στοιχεία
+που καταχωρήσατε στο ερωτηματολόγιο. Τα στοιχεία που καταχωρήσατε θα
+δημοσιευτούν σύντομα στο
+https://edu.ellak.gr/mitroo-anichton-technologion-stin-tritovathmia-ekpedefsi/.
+Στην ίδια σελίδα μπορείτε να δείτε όλες τις καταχωρίσεις.
+
+Στόχος του ερωτηματολογίου είναι να καταγραφούν όλα τα έργα ανοιχτού
+λογισμικού, ανοιχτών τεχνολογιών και περιεχομένου που χρησιμοποιούνται ή
+αναπτύσσονται στην τριτοβάθμια εκπαίδευση, για να δημιουργηθεί ένα μητρώο
+ανοιχτότητας που θα λειτουργήσει ως πλατφόρμα συνεργασίας και δημοσιότητας
+έργων και καλών πρακτικών στην ακαδημαϊκή-ερευνητική κοινότητα. Παράλληλα
+θα εμπλουτίζεται ο πίνακας ισοδυνάμων λογισμικών
+<https://mathe.ellak.gr/?page_id=135> ώστε να υπάρχει συνοπτική εικόνα για
+όλα τα ανοιχτά λογισμικά που μπορούν να χρησιμοποιηθούν στην εκπαιδευτική
+διαδικασία.
+
+Για ότι επιπλέον πληροφορίες ή/και προτάσεις μπορείτε να στείλετε
+ηλεκτρονικό ταχυδρομείο στο info@ellak.gr .
+
+
+Σας ευχαριστούμε,
+Η ομάδα υποστήριξης της ΕΕΛΛΑΚ.
+
+
+======================== Τα στοιχεία που καταχωρίσατε ======================
+
+Όνομα: ................... {$fields['edu_quest_applicant_name']}
+Επώνυμο: ................. {$fields['edu_quest_applicant_surname']}
+Email: ................... {$fields['edu_quest_applicant_email']}
+Ειδικότητα: .............. $mail_applicant_position\n
+Όνομα Εργαστηρίου: ....... {$fields['edu_quest_lab_name']}
+Δραστηριότητα Εργαστηρίου: {$fields['edu_quest_lab_activity']}
+Περιγραφή Εργαστηρίου: ... {$fields['edu_quest_lab_activity_description']}
+Υπεύθυνος Εργαστηρίου: ... {$fields['edu_quest_lab_head']}
+Ιστοσελίδα Εργαστηρίου: .. {$fields['edu_quest_lab_website']}\n
+Ίδρυμα: .................. {$fields['edu_quest_institution']}
+Τμήμα: ................... {$fields['edu_quest_department']}
+Τίτλος Μεταπτυχιακού: .... {$fields['edu_quest_graduate_title']}\n";
 
         	$stmt->execute();
 
@@ -206,7 +229,7 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
 	$from_name = $M_NAME;
 	$subject = $M_SUBJECT;
 	// Add the footer to the email body.
-	$body .= "\n\n[1] - https://edu.ellak.gr/mitroo-anichton-technologion-stin-tritovathmia-ekpedefsi/";
+	$body .= "===================================================================";
 	smtpmailer($to, $from, $from_name, $subject, $body, $M_HOST, $M_PORT);
 
 	//result_messages===============================================================      
