@@ -230,7 +230,7 @@ Email: ................... {$fields['edu_quest_applicant_email']}
 	$from_name = $M_NAME;
 	$subject = $M_SUBJECT;
 	// Add the footer to the email body.
-	$body .= "===================================================================";
+	$body .= "\n===================================================================";
 	smtpmailer($to, $from, $from_name, $subject, $body, $M_HOST, $M_PORT);
 
 	//result_messages===============================================================      
