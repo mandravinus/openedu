@@ -65,6 +65,10 @@ $app->post('/mathima', function($request, $response) use ($diy_storage, $diy_res
    $lesson = $etmimalession[0]["m"];
    $ellak = $etmimalession[0]["s"];
    $g='';
+	 
+	 // logging variables for the exec call that takes place down below...
+	 $exec_output;
+	 $exec_return_value;
 
    $storage = $diy_storage();
    $restapi = $diy_restapi();
@@ -209,13 +213,22 @@ Email: ................... {$fields['edu_quest_applicant_email']}
 					$exec = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X POST  '.$restapipoint.' -d '."'".$data_json."'";
 
 					$exec .= " | jq '.id' 2>&1";
-					exec($exec, $output, $return_var);
+					exec($exec, $exec_output, $exec_return_value);
+					
+					error_log("LOGGING FOR THE \$exec OUTPUT".PHP_EOL."-------------------------------------------".PHP_EOL.var_dump($exec_output));
+					error_log("LOGGING FOR THE \$exec OUTPUT".PHP_EOL."-------------------------------------------".PHP_EOL.var_dump($exec_return_value));
+					
+					
 					$fields1['fields']=$fields;
 					$content1 = json_encode($fields1);
 					$exec1 = 'curl -k --header "Authorization: Basic '.$restapitmp.'" -H "Content-Type: application/json" -X POST  '.$restapipoint2.'/'.$output[0].' -d '."'".$content1."'";
 
 					$exec1 .= " 2>&1";
-					exec($exec1, $output1, $return_var1);
+					
+					exec($exec1, $exec_output, $exec_return_value);
+					error_log("LOGGING FOR THE \$exec1 OUTPUT".PHP_EOL."-------------------------------------------".PHP_EOL.var_dump($exec_output));
+					error_log("LOGGING FOR THE \$exec1 OUTPUT".PHP_EOL."-------------------------------------------".PHP_EOL.var_dump($exec_return_value));
+					
 					$contentellakm='';
 					$contentellakt='';
 					$contentellaku='';
